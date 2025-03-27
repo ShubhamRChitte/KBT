@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KBT CAFE</title>
+
+    <!-- font awesome linking -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    
+    <!-- google fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Forum&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet"> 
+    
+    <link rel="stylesheet" href="/kbtcafe.css">
+    <!-- <link rel="stylesheet" href="item-qty.html"> -->
+    
+</head>
+<body>
+    
+<!-- header / navbar -->
+<header>
+    <nav class="navbar section-content">
+       
+        <a href="#" class="nav-logo">
+            <img src="/images/mvp-removebg-preview.png" alt="mvp image" class="mvp-logo">
+            <h2 class="logo-text">KBT CAFE</h2>
+        </a>
+        <ul class="nav-menu">
+            <button id="menu-close-button" ></button>
+            <li class="nav-item">
+                <a href="#" class="nav-link  hover-underline">Home</a>
+            </li>
+            <li class="nav-item">
+                <a href="#about" class="nav-link hover-underline">About</a>
+            </li>
+            <li class="nav-item">
+                <a href="#menu" class="nav-link hover-underline">Menu</a>
+            </li>
+            <li class="nav-item">
+                <a href="#reservation" class="nav-link hover-underline">Contact</a>
+            </li>
+            <div class="icon-cart">
+              <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 18 20">
+                  <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 15a2 2 0 1 0 0 4 2 2 0 0 0 0-4Zm0 0h8m-8 0-1-4m9 4a2 2 0 1 0 0 4 2 2 0 0 0 0-4Zm-9-4h10l2-7H3m2 7L3 4m0 0-.792-3H1"/>
+              </svg>
+              <span>0</span>
+          </div>
+        </ul>
+       
+        <button id="menu-open-button" ></button>
+    </nav>
+</header>
+
+
+<main>
+    <!-- home section -->
+    <section class="home">
+        <div class="section-content">
+            <div class="home-info">
+                <div class="home-info-1">
+                    <h1 class="home-info-h1 headline-1">Welcome To MVP'S KBT Cafe</h1>
+                </div>
+                <div class="home-info-3">
+                    <h3 class="home-info-h3 headline-1">It's amazing how the world begin to change through the eyes of a cup of Coffee</h3>
+                </div>
+                <div class="home-info-4">
+                    <button class="menu-button">view our menu </button>
+                    <a href="#reservation" class="hero-btn has-after">
+                      <img src="./images/hero-icon.png" width="48" height="48" alt="booking icon">
+                      <span class="label-2 text-center">Book A table</span>
+                    </a>
+                </div>
+                <div class="home-btn-border"></div>
+            </div>
+            <div class="home-img-wraper">
+                <img src="./images/kbt-2.jpg" alt="home-img" class="home-img">
+            </div>
+            
+        </div>
+    </section>
+
+     <!-- About section -->
+     <section class="section about text-center"  id="about">
+        <div class="container">
+
+
+          <div class="about-content">
+            <img src="./images/shape-3.png" alt="shape-3" class="shape-3 img-cover">
+
+            <p class="label-2 section-subtitle" id="about-label">Our Story</p>
+
+            <h2 class="headline-1 section-title">Every Flavor Tells a Story</h2>
+
+            <p class="section-text">
+              At KBT Cafe, every dish tells a story of passion, flavors, and unforgettable moments. From the aroma of freshly brewed coffee to the taste of handcrafted delights, we bring people together for experiences that linger beyond the last sip. Join us, where every bite is a journey and every visit feels like home."
+            </p>
+
+            <div class="contact-label">Book Through Call</div>
+
+            <a href="tel:+804001234567" class="body-1 contact-number hover-underline ">+88-123-123456</a>
+
+
+          </div>
+
+          <div class="about-banner">
+
+            <!-- <img src="restaurant/images/kbt-3.jpg" width="630" height="630"  alt="about banner"
+              class="w-100"> -->
+              <video width="680" height="630"  autoplay loop muted>
+                <source src="./images/kbtv.mp4" type="video/mp4">
+              </video>
+              
+         </div>
+
+        </div>
+      </section>
+
+      <!-- menu -->
+      <section class="section menu" id="menu">
+        <div class="container">
+
+
+          <h2 class="headline-1 section-title text-center">Delicious Menu</h2>
+
+          <ul class="grid-list">
+
+            <div class="menuset">
+              <li>
+                <div class="menu-card">
+  
+                  <figure class="card-banner img-holder" style="--width: 100; --height: 100;">
+                    <img src="./images/tea-removebg-preview.png" width="100" height="100" loading="lazy" alt="Greek Salad"
+                      class="img-cover">
+                      <h3 class="title-3 text-center">
+                        <a href="#" class="card-title">Tea</a>
+                      </h3>
+                  </figure>
+  
+                  <div class="menu-sep">
+  
+                    <div class="title-wrapper">
+                      
+  
+                      <span class="span title-2">Rs 10.00</span>
+                    </div>
+  
+                    <p class="card-text label-1">
+                      "Tea is the magic key to the vault where my brain is kept."
+                    </p>
+                    
+                    <button class="menu-order" value="Greek Salad">Add to Cart</button>
+                  </div>
+  
+                </div>
+              </li>
+  
+              <li>
+                <div class="menu-card ">
+  
+                  <figure class="card-banner img-holder" style="--width: 100; --height: 100;">
+                    <img src="./images/co.png" width="100" height="100" loading="lazy" alt="Lasagne"
+                      class="img-cover">
+                      <h3 class="title-3 text-center">
+                        <a href="#" class="card-title">Coffee</a>
+                      </h3>
+                  </figure>
+  
+                  <div class="menu-sep">
+  
+                    <div class="title-wrapper">
+                     
+  
+                      <span class="span title-2">Rs 20.00</span>
+                    </div>
+  
+                    <p class="card-text label-1">
+                      "Behind every successful person is a substantial amount of coffee."
+                    </p>
+                    <button class="menu-order" value="Lasagne">Add to Cart</button>
+                  </div>
+                  
+  
+                </div>
+              </li>
+
+              
+            </div>
+            <div class="menuset">
+              <li>
+                <div class="menu-card ">
+  
+                  <figure class="card-banner img-holder" style="--width: 100; --height: 100;">
+                    <img src="./images/maggi-removebg-preview.png" width="100" height="100" loading="lazy" alt="Butternut Pumpkin"
+                      class="img-cover">
+                      <h3 class="title-3 text-center">
+                        <a href="#" class="card-title">Maggi</a>
+                      </h3>
+                  </figure>
+  
+                  <div class="menu-sep">
+  
+                    <div class="title-wrapper">
+                      
+  
+                      <span class="span title-2">Rs 25.00</span>
+                    </div>
+  
+                    <p class="card-text label-1">
+                      "Maggi – because good things come in two minutes Maggi."
+                    </p>
+                    <button class="menu-order" value="Butternut Pumpkin">Add to Cart</button>
+                  </div>
+  
+                </div>
+              </li>
+
+              <li>
+                <div class="menu-card hover:card">
+
+                  <figure class="card-banner img-holder" style="--width: 100; --height: 100;">
+                    <img src="./images/french-fry-removebg-preview.png" width="100" height="100" loading="lazy" alt="Olivas Rellenas"
+                      class="img-cover">
+                      <h3 class="title-3 text-center">
+                        <a href="#" class="card-title">Fries</a>
+                      </h3>
+                  </figure>
+
+                  <div class="menu-sep">
+
+                    <div class="title-wrapper">
+                     
+
+                      <span class="span title-2">Rs 50.00</span>
+                    </div>
+
+                    <p class="card-text label-1">
+                      "Fries are crispy bites of happiness that make every moment better."
+                    </p>
+                    <button class="menu-order" value="Olivas Rellenas">Add to Cart</button> 
+                  </div>
+
+                </div>
+              </li>
+            </div>
+          
+            
+            <div class="menuset"> 
+            
+             
+              <li>
+                <div class="menu-card hover:card">
+
+                  <figure class="card-banner img-holder" style="--width: 100; --height: 100;">
+                    <img src="./images/vp.png" width="100" height="100" loading="lazy" alt="Olivas Rellenas"
+                      class="img-cover">
+                      <h3 class="title-3 text-center">
+                        <a href="#" class="card-title">Vada Pav</a>
+                      </h3>
+                  </figure>
+
+                  <div class="menu-sep">
+
+                    <div class="title-wrapper">
+                     
+
+                      <span class="span title-2">Rs 20.00</span>
+                    </div>
+
+                    <p class="card-text label-1">
+                      "Spicy, crispy, and oh-so-satisfying — that’s Vada Pav for you!"
+                    </p>
+                    <button class="menu-order" value="Tea">Add to Cart</button>
+
+                  </div>
+
+                </div>
+              </li>
+
+              <li>
+                <div class="menu-card hover:card">
+
+                  <figure class="card-banner img-holder" style="--width: 100; --height: 100;">
+                    <img src="./images/bun.png" width="100" height="100" loading="lazy" alt="Opu Fish"
+                      class="img-cover">
+                      <h3 class="title-3 text-center">
+                        <a href="#" class="card-title">Bun Maska</a>
+                      </h3>
+                  </figure>
+
+                  <div class="menu-sep">
+
+                    <div class="title-wrapper">
+                      
+
+                      <span class="span title-2">Rs 49.00</span>
+                    </div>
+
+                    <p class="card-text label-1">
+                      "Bun Maska — spreading happiness, one bite at a time."
+                    </p>
+                    <button class="menu-order" value="Opu Fish">Add to Cart</button>
+                  </div>
+
+                </div>
+              </li>
+            </div>
+          </ul>
+
+          <a href="#" class="btn btn-primary text-center">
+            <span class="text text-1">View All Menu</span>
+          </a>
+        </div>
+      </section>
+        
+    <!--- #RESERVATION /CONTACT -->
+
+      <section class="reservation" id="reservation">
+        <div class="container">
+
+          <div class="form reservation-form">
+
+            <form action="" class="form-left">
+
+              <h2 class="headline-2 text-center">Online Reservation</h2>
+
+              <p class="form-text text-center">
+                Booking request <a href="tel:+88123123456" class="link contact-number">+88-123-123456</a>
+                or fill out the order form
+              </p>
+
+              <div class="input-wrapper">
+                <input type="text" name="name" placeholder="Your Name"  class="input-field">
+
+                <input type="tel" name="phone" placeholder="Phone Number"  class="input-field">
+              </div>
+
+              <div class="input-wrapper">
+
+                <div class="icon-wrapper box1">
+                
+
+                  <select name="person" class="input-field ">
+                    <option value="1-person">1 Person</option>
+                    <option value="2-person">2 Person</option>
+                    <option value="3-person">3 Person</option>
+                    <option value="4-person">4 Person</option>
+                    <option value="5-person">5 Person</option>
+                    <option value="6-person">6 Person</option>
+                    <option value="7-person">7 Person</option>
+                  </select>
+                </div>
+
+                <div class="icon-wrapper box2">
+
+                  <input type="date" name="reservation-date" class="input-field">
+                
+                </div>
+
+                <div class="icon-wrapper box3">
+    
+
+                  <select name="person" class="input-field ">
+                    <option value="08:00am">08 : 00 am</option>
+                    <option value="09:00am">09 : 00 am</option>
+                    <option value="010:00am">10 : 00 am</option>
+                    <option value="011:00am">11 : 00 am</option>
+                    <option value="012:00am">12 : 00 am</option>
+                    <option value="01:00pm">01 : 00 pm</option>
+                    <option value="02:00pm">02 : 00 pm</option>
+                    <option value="03:00pm">03 : 00 pm</option>
+                    <option value="04:00pm">04 : 00 pm</option>
+                    <option value="05:00pm">05 : 00 pm</option>
+                    <option value="06:00pm">06 : 00 pm</option>
+                    <option value="07:00pm">07 : 00 pm</option>
+                    <option value="08:00pm">08 : 00 pm</option>
+                    <option value="09:00pm">09 : 00 pm</option>
+                    <option value="10:00pm">10 : 00 pm</option>
+                  </select>
+
+                  
+                </div>
+
+              </div>
+
+              <textarea name="message" placeholder="Message" class="input-field" style="margin-bottom: 3rem;"></textarea>
+
+              <button type="submit" class="btn btn-secondary">
+                <span class="text text-1 book_t">Book A Table</span>
+              </button>
+
+            </form>
+
+            <div class="form-right text-center" style="background-image: url(./images/form-pattern.png)">
+
+              <h2 class="headline-1 text-center">Contact Us</h2>
+              <br>
+              <div class="separator"></div>
+              <p class="contact-label">Booking Request</p>
+
+              <a href="tel:+88123123456" class="body-1 contact-number hover-underline">+88-123-123456</a>
+              <br><br>
+              <div class="separator"></div>
+
+              <p class="contact-label">Location</p>
+
+              <p class="box4 add">
+                KBT Cafe , KBT college of Engineering , <br>
+                Nashik , 422001 , Maharashtra.
+              </p>
+              <div class="separator"></div>
+              <div class="box5">
+                <p class="box4">Daily : 8.00 am to 10.00 pm</p>
+                <p class="box4">booking@kbtcafe.com</p>
+                <p class="box4">kbtcafe@gmail.com</p>
+              </div>
+              
+            </div>
+            <img src="./images/shape-7.png" alt="shape-7" class="shape-7 img-cover">
+            <img src="./images/shape-7.png" alt="shape-7" class="shape-71 img-cover">
+          </div>
+          
+
+        </div>
+      </section>
+
+ 
+    
+
+    
+      <script src="kbtcafe.js" type="module"></script>
+      
+</main>
+</body>
+</html>

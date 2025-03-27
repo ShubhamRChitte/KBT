@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Item Quantity</title>
+    <link rel="stylesheet" href="/item-qty.css">
+</head>
+<body>
+    <main>
+        <h1 class="headline-2 section-subtitle" style="margin-left: 21rem;">KBT CAFE</h1>
+
+        <%for(let item of items){%>
+            <div class="display">
+                <img src="" alt="" class="itm-image">
+                <div class="itm-name"><%=item.name%></div>
+                <div class="itm-price"><%=item.price%></div>
+                
+                <form method="post" action="/kbt/<%=item.id%>/?_method=PATCH">
+                    <select name="qty" id="">
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                        <option value="6">6</option>
+                    </select>
+                </form>
+
+            </div>
+        <%}%>
+       
+
+    </main>
+
+    
+</body>
+</html>
