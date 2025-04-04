@@ -432,5 +432,63 @@
       <script src="kbtcafe.js" type="module"></script>
       
 </main>
+<script>
+    // Cart functionality
+    let cartCount = 0;
+    const cartCountSpan = document.querySelector('.icon-cart span');
+    const addToCartButtons = document.querySelectorAll('.menu-order');
+    const cartItems = [];
+
+    // Add event listeners to all "Add to Cart" buttons
+    addToCartButtons.forEach(button => {
+        button.addEventListener('click', function() {
+            const menuCard = this.closest('.menu-card');
+            const itemName = menuCard.querySelector('.card-title').textContent;
+            const itemPrice = menuCard.querySelector('.span.title-2').textContent.replace('Rs ', '');
+            
+            // Add item to cart
+            cartItems.push({
+                name: itemName,
+                price: parseFloat(itemPrice),
+                quantity: 1
+            });
+            
+            // Increment cart counter
+            cartCount++;
+            cartCountSpan.textContent = cartCount;
+            
+            // Store cart data in localStorage
+            localStorage.setItem('cartCount', cartCount);
+            localStorage.setItem('cartItems', JSON.stringify(cartItems));
+            
+            // Visual feedback
+            button.textContent = "Added!";
+            setTimeout(() => { button.textContent = "Add to Cart"; }, 1000);
+        });
+    });
+
+    // Load cart data from localStorage on page load
+    document.addEventListener('DOMContentLoaded', function() {
+        const savedCartCount = localStorage.getItem('cartCount');
+        const savedCartItems = localStorage.getItem('cartItems');
+        
+        if (savedCartCount) {
+            cartCount = parseInt(savedCartCount);
+            cartCountSpan.textContent = cartCount;
+        }
+        
+        if (savedCartItems) {
+            const parsedItems = JSON.parse(savedCartItems);
+            cartItems.push(...parsedItems);
+        }
+        
+        // Make cart icon clickable to go to checkout
+        document.querySelector('.icon-cart').addEventListener('click', function() {
+            if (cartCount > 0) {
+                window.location.href = "/kbt/qty";
+            }
+        });
+    });
+</script>
 </body>
 </html>

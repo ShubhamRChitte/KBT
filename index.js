@@ -2,6 +2,7 @@ const express = require("express");
 const app = express();
 const path = require("path");
 const port = 3000;
+const methodOverride = require("method-override");
 
 // connect the views path
 app.set(path.join(__dirname,"views"));
@@ -15,8 +16,11 @@ app.use(express.urlencoded({extended:true}));
 // use for json data
 app.use(express.json());
 
+// Use method override for PUT, PATCH, DELETE requests
+app.use(methodOverride("_method"));
+
 app.listen(port,()=>{
-    console.log("port listening");
+    console.log("port listening on " + port);
 })
 
 let items = [
@@ -43,22 +47,35 @@ app.get("/kbt",(req,res)=>{
     res.render("kbtcafe.ejs");
 })
 
-// quantity select
+// Cart page - displays items in cart
+app.get("/kbt/qty",(req,res)=>{
+    res.render("item-qty.ejs", {items});
+})
 
-app.patch("/posts/:id",(req,res)=>{
+// Update quantity
+app.patch("/kbt/:id",(req,res)=>{
     let {id} = req.params;
     let newQty = req.body.qty;
 
-    let item = items.find((i)=>id === i.id);
-    item.qty=newQty;
+    let item = items.find((i) => i.id == id);
+    if (item) {
+        item.qty = newQty;
+    }
+    
     res.redirect("/kbt/bill");
 })
 
-app.get("/kbt/qty",(req,res)=>{
-    res.render("item-qty.ejs",{items});
-})
+// API endpoint to get menu items
+app.get("/api/items", (req, res) => {
+    res.json(items);
+});
 
 // bill 
 app.get("/kbt/bill",(req,res)=>{
     res.render("bill.ejs");
 })
+
+// Default route redirect to kbt
+app.get("/", (req, res) => {
+    res.redirect("/kbt");
+});

@@ -11,9 +11,56 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Forum&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet"> 
     <link rel="stylesheet" href="/bill.css">
+    <style>
+        .back-button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 8px 15px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            margin: 10px;
+            text-decoration: none;
+            display: inline-block;
+            position: absolute;
+            top: 10px;
+            left: 10px;
+        }
+        .back-button:hover {
+            background-color: #45a049;
+        }
+        .print-button {
+            background-color: #008CBA;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            margin-top: 20px;
+            display: block;
+            width: 200px;
+            margin: 20px auto;
+            text-align: center;
+        }
+        .print-button:hover {
+            background-color: #007B9A;
+        }
+        .bill-items {
+            width: 100%;
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 10px;
+        }
+        .bill-item {
+            padding: 5px 0;
+        }
+    </style>
 </head>
 <body>
-    <main >
+    <main>
+        <a href="/kbt/qty" class="back-button">← Back to Cart</a>
         <section class="sec-1"></section>
 
         <section class="sec-2" >
@@ -21,10 +68,10 @@
             <hr>
             <br>
             <div class="custom-info">
-                <h3>Name : <p></p></h3>
-                <h3>Date : <p></p></h3>
-                <h3>Time : <p></p></h3>
-                <h3>Bill No : <p></p></h3>
+                <h3>Name : <p id="customer-name">Guest</p></h3>
+                <h3>Date : <p id="current-date"></p></h3>
+                <h3>Time : <p id="current-time"></p></h3>
+                <h3>Bill No : <p id="bill-number"></p></h3>
             </div>
             <br><br>
         <hr>
@@ -35,34 +82,85 @@
                 <h3>Total</h3>
             </div>
            <hr>
-            <div class="item-data">
-                <div class="item">
-                    <p> hellp world</p>
-                </div>
-                <div class="qty">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Nulla, beatae ipsa! Quidem, quia dolorum quod error sed eius magni, reprehenderit dolorem laborum, itaque ratione corrupti illo eos harum ad impedit?</div>
-                <div class="price">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Enim aspernatur dolorem fuga quaerat laborum odio provident qui non suscipit voluptatum! Itaque nesciunt consequatur nam nemo voluptatibus necessitatibus voluptas! Neque, pariatur.</div>
-                <div class="total">Lorem ipsum dolor sit amet consectetur adipisicing elit. Soluta, laudantium! Commodi, animi amet consectetur quisquam porro excepturi cum sequi consequatur, nam esse ullam eius eveniet consequuntur doloribus illo necessitatibus fuga!</div>
+            <div class="item-data" id="bill-items-container">
+                <!-- Bill items will be loaded here dynamically -->
             </div>
             <hr>
             <div class="bill-1">
                 <div style="width: 50%;">
-                    <p>Total Qty : </p>
+                    <p>Total Qty : <span id="total-qty">0</span></p>
                 </div>
                 <div style="width: 25%;">
                     <p>Sub Total</p>
                 </div>
                 <div style="width: 25%;">
-                    <p></p>
+                    <p id="sub-total">Rs 0.00</p>
                 </div>
             </div>
            <hr>
             <div class="GT">
-                <h2>Grand Total</h2>
+                <h2>Grand Total: <span id="grand-total">Rs 0.00</span></h2>
             </div>
           <hr>
+          <button class="print-button" id="print-bill">Print Bill</button>
         </section>
 
         <section class="sec-3"></section>
     </main>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Set current date and time
+            const now = new Date();
+            document.getElementById('current-date').textContent = now.toLocaleDateString();
+            document.getElementById('current-time').textContent = now.toLocaleTimeString();
+            
+            // Generate random bill number
+            const billNumber = Math.floor(Math.random() * 10000);
+            document.getElementById('bill-number').textContent = billNumber;
+            
+            // Load cart data from localStorage
+            const savedCartItems = localStorage.getItem('cartItems');
+            let cartItems = [];
+            
+            if (savedCartItems) {
+                cartItems = JSON.parse(savedCartItems);
+                const billItemsContainer = document.getElementById('bill-items-container');
+                
+                let totalQuantity = 0;
+                let subTotal = 0;
+                
+                // Display bill items
+                cartItems.forEach(item => {
+                    const itemTotal = item.price * item.quantity;
+                    totalQuantity += item.quantity;
+                    subTotal += itemTotal;
+                    
+                    const itemDiv = document.createElement('div');
+                    itemDiv.className = 'bill-items';
+                    itemDiv.innerHTML = `
+                        <div class="bill-item">${item.name}</div>
+                        <div class="bill-item">${item.quantity}</div>
+                        <div class="bill-item">Rs ${item.price.toFixed(2)}</div>
+                        <div class="bill-item">Rs ${itemTotal.toFixed(2)}</div>
+                    `;
+                    billItemsContainer.appendChild(itemDiv);
+                });
+                
+                // Update totals
+                document.getElementById('total-qty').textContent = totalQuantity;
+                document.getElementById('sub-total').textContent = `Rs ${subTotal.toFixed(2)}`;
+                document.getElementById('grand-total').textContent = `Rs ${subTotal.toFixed(2)}`;
+            }
+            
+            // Print bill
+            document.getElementById('print-bill').addEventListener('click', function() {
+                window.print();
+                // Clear cart after printing
+                localStorage.removeItem('cartItems');
+                localStorage.removeItem('cartCount');
+            });
+        });
+    </script>
 </body>
 </html> 

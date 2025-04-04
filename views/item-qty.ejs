@@ -5,34 +5,144 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Item Quantity</title>
     <link rel="stylesheet" href="/item-qty.css">
+    <style>
+        .back-button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 8px 15px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            margin: 10px;
+            text-decoration: none;
+            display: inline-block;
+        }
+        .back-button:hover {
+            background-color: #45a049;
+        }
+        .cart-container {
+            margin: 20px;
+        }
+        .cart-item {
+            margin-bottom: 15px;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            display: flex;
+            justify-content: space-between;
+        }
+        .checkout-btn {
+            background-color: #008CBA;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            margin-top: 20px;
+        }
+        .checkout-btn:hover {
+            background-color: #007B9A;
+        }
+    </style>
 </head>
 <body>
     <main>
+        <a href="/kbt" class="back-button">← Back to Menu</a>
         <h1 class="headline-2 section-subtitle" style="margin-left: 21rem;">KBT CAFE</h1>
-
-        <%for(let item of items){%>
-            <div class="display">
-                <img src="" alt="" class="itm-image">
-                <div class="itm-name"><%=item.name%></div>
-                <div class="itm-price"><%=item.price%></div>
-                
-                <form method="post" action="/kbt/<%=item.id%>/?_method=PATCH">
-                    <select name="qty" id="">
-                        <option value="1">1</option>
-                        <option value="2">2</option>
-                        <option value="3">3</option>
-                        <option value="4">4</option>
-                        <option value="5">5</option>
-                        <option value="6">6</option>
-                    </select>
-                </form>
-
-            </div>
-        <%}%>
-       
+        
+        <div class="cart-container" id="cart-items-container">
+            <!-- Cart items will be loaded here dynamically -->
+        </div>
+        
+        <button class="checkout-btn" id="proceed-to-checkout">Proceed to Checkout</button>
 
     </main>
 
-    
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const cartItemsContainer = document.getElementById('cart-items-container');
+            const checkoutButton = document.getElementById('proceed-to-checkout');
+            
+            // Load cart data from localStorage
+            const savedCartItems = localStorage.getItem('cartItems');
+            let cartItems = [];
+            
+            if (savedCartItems) {
+                cartItems = JSON.parse(savedCartItems);
+                
+                // Display cart items
+                cartItems.forEach((item, index) => {
+                    const itemDiv = document.createElement('div');
+                    itemDiv.className = 'cart-item';
+                    itemDiv.innerHTML = `
+                        <div>${item.name}</div>
+                        <div>Rs ${item.price.toFixed(2)}</div>
+                        <select class="quantity-select" data-index="${index}">
+                            <option value="1" ${item.quantity === 1 ? 'selected' : ''}>1</option>
+                            <option value="2" ${item.quantity === 2 ? 'selected' : ''}>2</option>
+                            <option value="3" ${item.quantity === 3 ? 'selected' : ''}>3</option>
+                            <option value="4" ${item.quantity === 4 ? 'selected' : ''}>4</option>
+                            <option value="5" ${item.quantity === 5 ? 'selected' : ''}>5</option>
+                            <option value="6" ${item.quantity === 6 ? 'selected' : ''}>6</option>
+                        </select>
+                        <div>Total: Rs ${(item.price * item.quantity).toFixed(2)}</div>
+                        <button class="remove-btn" data-index="${index}">Remove</button>
+                    `;
+                    cartItemsContainer.appendChild(itemDiv);
+                });
+                
+                // Add event listeners for quantity changes
+                document.querySelectorAll('.quantity-select').forEach(select => {
+                    select.addEventListener('change', function() {
+                        const index = this.getAttribute('data-index');
+                        const newQuantity = parseInt(this.value);
+                        cartItems[index].quantity = newQuantity;
+                        
+                        // Update the total price display
+                        const totalDiv = this.parentElement.querySelector('div:nth-child(4)');
+                        totalDiv.textContent = `Total: Rs ${(cartItems[index].price * newQuantity).toFixed(2)}`;
+                        
+                        // Update localStorage
+                        localStorage.setItem('cartItems', JSON.stringify(cartItems));
+                    });
+                });
+                
+                // Add event listeners for remove buttons
+                document.querySelectorAll('.remove-btn').forEach(button => {
+                    button.addEventListener('click', function() {
+                        const index = this.getAttribute('data-index');
+                        cartItems.splice(index, 1);
+                        
+                        // Update cart count
+                        const newCartCount = cartItems.length;
+                        localStorage.setItem('cartCount', newCartCount);
+                        localStorage.setItem('cartItems', JSON.stringify(cartItems));
+                        
+                        // Remove item from display
+                        this.parentElement.remove();
+                        
+                        // Refresh the page if all items are removed
+                        if (cartItems.length === 0) {
+                            window.location.href = '/kbt';
+                        }
+                    });
+                });
+            } else {
+                cartItemsContainer.innerHTML = '<p>Your cart is empty</p>';
+                checkoutButton.disabled = true;
+            }
+            
+            // Proceed to checkout
+            checkoutButton.addEventListener('click', function() {
+                if (cartItems.length > 0) {
+                    // Save cart data to send to server
+                    localStorage.setItem('cartItems', JSON.stringify(cartItems));
+                    window.location.href = '/kbt/bill';
+                }
+            });
+        });
+    </script>
 </body>
 </html>
