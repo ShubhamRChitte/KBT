@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Table Reservation</title>
+</head>
+<body>
+
+    <h1>Table Reservation</h1>
+   <% for(let res of reserv){ %>
+    <div>
+        <p><%=res.name%> &nbsp;&nbsp;<%= res._id %> </p>
+    
+        <form action="/kbt/<%=res._id%>/reserv_edit">
+            <button>Edit</button>
+        </form>
+       
+        <form action="/kbt/<%= res._id%>/reserv?_method=DELETE" method="post">
+            <button>Delete</button>
+        </form>
+   
+    </div>
+    
+    
+
+
+   <% } %>
+
+</body>
+</html>

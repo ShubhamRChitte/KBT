@@ -10,54 +10,63 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Forum&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet"> 
-    <link rel="stylesheet" href="/bill.css">
+    <link rel="stylesheet" href="/css/bill.css">
 </head>
 <body>
-    <main >
+    
+    <main>
+        <%- include("includes/navbar") %>
         <section class="sec-1"></section>
 
-        <section class="sec-2" >
+        <section class="sec-2" style="margin-top: 5rem;" >
             <h1 class="headline-2">KBT CAFE</h1>
             <hr>
             <br>
             <div class="custom-info">
-                <h3>Name : <p></p></h3>
-                <h3>Date : <p></p></h3>
-                <h3>Time : <p></p></h3>
-                <h3>Bill No : <p></p></h3>
+                <h3>Name : XYZ</h3>
+                <h3>Date : <%=date%></h3>
+                <h3>Time : <%=time%></h3>
+                <h3>Bill No : 1</h3>
             </div>
-            <br><br>
-        <hr>
+            <br><hr>
             <div class="name">
-                <h3>Item</h3>
+                
+                <h3>Item</h3>   
                 <h3>Quantity</h3>
                 <h3>Price</h3>
-                <h3>Total</h3>
+                <h3>Amount</h3>
             </div>
            <hr>
-            <div class="item-data">
-                <div class="item">
-                    <p> hellp world</p>
-                </div>
-                <div class="qty">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Nulla, beatae ipsa! Quidem, quia dolorum quod error sed eius magni, reprehenderit dolorem laborum, itaque ratione corrupti illo eos harum ad impedit?</div>
-                <div class="price">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Enim aspernatur dolorem fuga quaerat laborum odio provident qui non suscipit voluptatum! Itaque nesciunt consequatur nam nemo voluptatibus necessitatibus voluptas! Neque, pariatur.</div>
-                <div class="total">Lorem ipsum dolor sit amet consectetur adipisicing elit. Soluta, laudantium! Commodi, animi amet consectetur quisquam porro excepturi cum sequi consequatur, nam esse ullam eius eveniet consequuntur doloribus illo necessitatibus fuga!</div>
-            </div>
-            <hr>
-            <div class="bill-1">
+            
+         
+    <%for(let item of select_itm){%>
+        <div class="display">
+            
+            <div class="itm-name"><%=item.name%></div>
+            <div class="itm-qty"><%=item.qty%></div>
+            <div class="itm-price"><%=item.price%></div>
+            <div class="itm-total"><%=item.price*item.qty%></div>
+            
+        </div>
+    <%}%>
+        <hr>
+            
+            
+        
+            <div class="bill-1" >
                 <div style="width: 50%;">
-                    <p>Total Qty : </p>
+                    <p>Total Qty : <%=it_count%> </p>
                 </div>
                 <div style="width: 25%;">
                     <p>Sub Total</p>
                 </div>
                 <div style="width: 25%;">
-                    <p></p>
+                    <p><%=t_price%>.00</p>
                 </div>
             </div>
            <hr>
             <div class="GT">
-                <h2>Grand Total</h2>
+                <h2>Grand Total :&nbsp;&nbsp; Rs <%=t_price%>.00</h2>
             </div>
           <hr>
         </section>

@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="/css/kbtcafe.css">
+</head>
+<body>
+    <%- include("includes/navbar") %>
+    <section class="reservation" id="reservation">
+        <div class="container">
+
+          <div class="form reservation-form">
+
+            <form action="/kbt" method="post" class="form-left" id="myreserv">
+
+              <h2 class="headline-2 text-center">Online Reservation</h2>
+
+              <p class="form-text text-center">
+                Booking request <a href="tel:+88123123456" class="link contact-number">+88-123-123456</a>
+                or fill out the order form
+              </p>
+
+              <div class="input-wrapper">
+                <input type="text" name="custom[name]" placeholder="Your Name"  class="input-field" required>
+
+                <input type="text" name="custom[phone]" placeholder="Phone Number"  class="input-field" required maxlength="10" minlength="10" id="phone">
+              </div>
+
+              <div class="input-wrapper">
+
+                <div class="icon-wrapper box1">
+                
+
+                  <select name="custom[person]" class="input-field" required>
+                    <option value="1">1 Person</option>
+                    <option value="2">2 Person</option>
+                    <option value="3">3 Person</option>
+                    <option value="4">4 Person</option>
+                    <option value="5">5 Person</option>
+                    <option value="6">6 Person</option>
+                    <option value="7">7 Person</option>
+                  </select>
+                </div>
+
+                <div class="icon-wrapper box2">
+
+                  <input type="date" name="custom[date]" class="input-field" required>
+                
+                </div>
+
+                <div class="icon-wrapper box3">
+    
+
+                  <select name="custom[time]" class="input-field " required>
+                    <option value="08:00am">08 : 00 am</option>
+                    <option value="09:00am">09 : 00 am</option>
+                    <option value="10:00am">10 : 00 am</option>
+                    <option value="11:00am">11 : 00 am</option>
+                    <option value="12:00am">12 : 00 am</option>
+                    <option value="01:00pm">01 : 00 pm</option>
+                    <option value="02:00pm">02 : 00 pm</option>
+                    <option value="03:00pm">03 : 00 pm</option>
+                    <option value="04:00pm">04 : 00 pm</option>
+                    <option value="05:00pm">05 : 00 pm</option>
+                    <option value="06:00pm">06 : 00 pm</option>
+                    <option value="07:00pm">07 : 00 pm</option>
+                    <option value="08:00pm">08 : 00 pm</option>
+                    <option value="09:00pm">09 : 00 pm</option>
+                    <option value="10:00pm">10 : 00 pm</option>
+                  </select>
+
+                  
+                </div>
+
+              </div>
+
+              <textarea name="custom[message]" placeholder="Message" class="input-field" style="margin-bottom: 3rem;"></textarea>
+
+              <button type="submit" class="btn btn-secondary">
+                <span class="text text-1 book_t">Book A Table</span>
+              </button>
+
+            </form>
+
+            <div class="form-right text-center" style="background-image: url(/images/form-pattern.png)">
+
+              <h2 class="headline-1 text-center">Contact Us</h2>
+              <br>
+              <div class="separator"></div>
+              <p class="contact-label">Booking Request</p>
+
+              <a href="tel:+88123123456" class="body-1 contact-number hover-underline">+88-123-123456</a>
+              <br><br>
+              <div class="separator"></div>
+
+              <p class="contact-label">Location</p>
+
+              <p class="box4 add">
+                KBT Cafe , KBT college of Engineering , <br>
+                Nashik , 422001 , Maharashtra.
+              </p>
+              <div class="separator"></div>
+              <div class="box5">
+                <p class="box4">Daily : 8.00 am to 10.00 pm</p>
+                <p class="box4">booking@kbtcafe.com</p>
+                <p class="box4">kbtcafe@gmail.com</p>
+              </div>
+              
+            </div>
+            <img src="/images/shape-7.png" alt="shape-7" class="shape-7 img-cover">
+            <img src="/images/shape-7.png" alt="shape-7" class="shape-71 img-cover">
+          </div>
+          
+
+        </div>
+      </section>
+   
+    <script src="/js/kbtcafe.js"></script>
+</body>
+</html>

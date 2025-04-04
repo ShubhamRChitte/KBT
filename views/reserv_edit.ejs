@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Reservation</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+
+</head>
+
+  
+<body>
+    <h1>Edit your Reservation</h1>
+    <div class="row">
+        <div class="col-8 offset-2">
+    <form action="/kbt/<%=reserv._id%>/edit?_method=PATCH" method="post">
+        <div class="mb-3">
+            <label for="name" class="form-label">Name</label>
+            <input type="text" value="<%=reserv.name%>" name="reserv[name]" class="form-control">
+        </div>
+        <div class="mb-3">
+            <label for="phone" class="form-label">Phone</label>
+            <input type="text" value="<%=reserv.phone%>" name="reserv[phone]" class="form-control">
+        </div>
+        <div class="mb-3">
+            <label for="person" class="form-label">Person</label>
+            <input type="text" value="<%=reserv.person%>" name="reserv[person]" class="form-control">
+        </div>
+        <div class="mb-3">
+            <label for="date" class="form-label">Date</label>
+            <input type="date" value="<%=reserv.date%>" name="reserv[date]" class="form-control">
+        </div>
+        <div class="mb-3">
+            <label for="time" class="form-label">Time</label>
+            <input type="text" value="<%=reserv.time%>" name="reserv[time]" class="form-control">
+        </div>
+        <div class="mb-3">
+            <label for="message" class="form-label">Title</label>
+            <input type="text" value="<%=reserv.message%>" name="reserv[message]" class="form-control">
+        </div>
+        <button class="btn btn-dark edit-btn mt-3">Edit</button>
+        <br>
+    </form>
+</div>
+</div>
+
+
+    
+</body>
+</html>

@@ -13,14 +13,14 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Forum&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet"> 
     
-    <link rel="stylesheet" href="/kbtcafe.css">
+    <link rel="stylesheet" href="/css/kbtcafe.css">
     <!-- <link rel="stylesheet" href="item-qty.html"> -->
     
 </head>
 <body>
     
 <!-- header / navbar -->
-<header>
+<!-- <header>
     <nav class="navbar section-content">
        
         <a href="#" class="nav-logo">
@@ -42,16 +42,23 @@
                 <a href="#reservation" class="nav-link hover-underline">Contact</a>
             </li>
             <div class="icon-cart">
-              <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 18 20">
-                  <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 15a2 2 0 1 0 0 4 2 2 0 0 0 0-4Zm0 0h8m-8 0-1-4m9 4a2 2 0 1 0 0 4 2 2 0 0 0 0-4Zm-9-4h10l2-7H3m2 7L3 4m0 0-.792-3H1"/>
-              </svg>
-              <span>0</span>
+              <form action="/kbt/itm-qty" method="get">
+                <button>
+                  <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 18 20">
+                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 15a2 2 0 1 0 0 4 2 2 0 0 0 0-4Zm0 0h8m-8 0-1-4m9 4a2 2 0 1 0 0 4 2 2 0 0 0 0-4Zm-9-4h10l2-7H3m2 7L3 4m0 0-.792-3H1"/>
+                </svg>
+                <span class="noofitems"> <p>0</p></span>
+                </button>
+               
+              </form>
           </div>
         </ul>
        
         <button id="menu-open-button" ></button>
     </nav>
-</header>
+</header> -->
+
+<%- include("includes/navbar") %>
 
 
 <main>
@@ -60,14 +67,16 @@
         <div class="section-content">
             <div class="home-info">
                 <div class="home-info-1">
-                    <h1 class="home-info-h1 headline-1">Welcome To MVP'S KBT Cafe</h1>
+                    <h1 class="home-info-h1 headline-1">Welcome To &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;MVP'S KBT &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp Cafe</h1>
                 </div>
                 <div class="home-info-3">
                     <h3 class="home-info-h3 headline-1">It's amazing how the world begin to change through the eyes of a cup of Coffee</h3>
                 </div>
                 <div class="home-info-4">
-                    <button class="menu-button">view our menu </button>
-                    <a href="#reservation" class="hero-btn has-after">
+                    <a href="#menu">
+                      <button class="menu-button">view our menu </button>
+                    </a>
+                    <a href="#reservation"  class="hero-btn has-after">
                       <img src="./images/hero-icon.png" width="48" height="48" alt="booking icon">
                       <span class="label-2 text-center">Book A table</span>
                     </a>
@@ -82,7 +91,7 @@
     </section>
 
      <!-- About section -->
-     <section class="section about text-center"  id="about">
+     <!-- <section class="section about text-center"  id="about">
         <div class="container">
 
 
@@ -106,19 +115,21 @@
 
           <div class="about-banner">
 
-            <!-- <img src="restaurant/images/kbt-3.jpg" width="630" height="630"  alt="about banner"
-              class="w-100"> -->
-              <video width="680" height="630"  autoplay loop muted>
+          
+              <video width="680" height="630"  autoplay loop muted  >
                 <source src="./images/kbtv.mp4" type="video/mp4">
               </video>
               
          </div>
 
         </div>
-      </section>
+      </section> -->
+      <%- include("about") %>
+
+
 
       <!-- menu -->
-      <section class="section menu" id="menu">
+      <!-- <section class="section menu" id="menu">
         <div class="container">
 
 
@@ -131,7 +142,7 @@
                 <div class="menu-card">
   
                   <figure class="card-banner img-holder" style="--width: 100; --height: 100;">
-                    <img src="./images/tea-removebg-preview.png" width="100" height="100" loading="lazy" alt="Greek Salad"
+                    <img src="./images/tea-removebg-preview.png" width="100" height="100" loading="lazy" alt="Tea"
                       class="img-cover">
                       <h3 class="title-3 text-center">
                         <a href="#" class="card-title">Tea</a>
@@ -149,8 +160,10 @@
                     <p class="card-text label-1">
                       "Tea is the magic key to the vault where my brain is kept."
                     </p>
+                    <form action="/kbt/1/itm" method="get" id="addcart">
+                      <button class="menu-order" type="submit">Add to Cart</button>
+                    </form>
                     
-                    <button class="menu-order" value="Greek Salad">Add to Cart</button>
                   </div>
   
                 </div>
@@ -178,7 +191,10 @@
                     <p class="card-text label-1">
                       "Behind every successful person is a substantial amount of coffee."
                     </p>
-                    <button class="menu-order" value="Lasagne">Add to Cart</button>
+                    
+                    <form action="/kbt/2/itm" method="get" id="addcart">
+                      <button type="submit" class="menu-order">Add to Cart</button>
+                    </form>
                   </div>
                   
   
@@ -210,7 +226,9 @@
                     <p class="card-text label-1">
                       "Maggi – because good things come in two minutes Maggi."
                     </p>
-                    <button class="menu-order" value="Butternut Pumpkin">Add to Cart</button>
+                    <form action="/kbt/3/itm" method="get" id="addcart">
+                      <button class="menu-order" type="submit">Add to Cart</button>
+                    </form>
                   </div>
   
                 </div>
@@ -238,7 +256,9 @@
                     <p class="card-text label-1">
                       "Fries are crispy bites of happiness that make every moment better."
                     </p>
-                    <button class="menu-order" value="Olivas Rellenas">Add to Cart</button> 
+                    <form action="/kbt/4/itm" method="get" id="addcart">
+                      <button class="menu-order" type="submit">Add to Cart</button>
+                    </form>
                   </div>
 
                 </div>
@@ -271,7 +291,9 @@
                     <p class="card-text label-1">
                       "Spicy, crispy, and oh-so-satisfying — that’s Vada Pav for you!"
                     </p>
-                    <button class="menu-order" value="Tea">Add to Cart</button>
+                    <form action="/kbt/5/itm" method="get" id="addcart">
+                      <button class="menu-order" type="submit">Add to Cart</button>
+                    </form>
 
                   </div>
 
@@ -300,7 +322,9 @@
                     <p class="card-text label-1">
                       "Bun Maska — spreading happiness, one bite at a time."
                     </p>
-                    <button class="menu-order" value="Opu Fish">Add to Cart</button>
+                    <form action="/kbt/6/itm" method="get" id="addcart">
+                      <button class="menu-order" type="submit">Add to Cart</button>
+                    </form>
                   </div>
 
                 </div>
@@ -312,12 +336,14 @@
             <span class="text text-1">View All Menu</span>
           </a>
         </div>
-      </section>
-        
+      </section> -->
+       <%- include("menu") %>
+      
+
     <!--- #RESERVATION /CONTACT -->
 
-      <section class="reservation" id="reservation">
-        <div class="container">
+      <!-- <section class="reservation" id="reservation">
+                <div class="container">
 
           <div class="form reservation-form">
 
@@ -331,9 +357,9 @@
               </p>
 
               <div class="input-wrapper">
-                <input type="text" name="name" placeholder="Your Name"  class="input-field">
+                <input type="text" name="name" placeholder="Your Name"  class="input-field" required>
 
-                <input type="tel" name="phone" placeholder="Phone Number"  class="input-field">
+                <input type="tel" name="phone" placeholder="Phone Number"  class="input-field" required>
               </div>
 
               <div class="input-wrapper">
@@ -341,7 +367,7 @@
                 <div class="icon-wrapper box1">
                 
 
-                  <select name="person" class="input-field ">
+                  <select name="person" class="input-field" required>
                     <option value="1-person">1 Person</option>
                     <option value="2-person">2 Person</option>
                     <option value="3-person">3 Person</option>
@@ -354,19 +380,19 @@
 
                 <div class="icon-wrapper box2">
 
-                  <input type="date" name="reservation-date" class="input-field">
+                  <input type="date" name="reservation-date" class="input-field" required>
                 
                 </div>
 
                 <div class="icon-wrapper box3">
     
 
-                  <select name="person" class="input-field ">
+                  <select name="time" class="input-field " required>
                     <option value="08:00am">08 : 00 am</option>
                     <option value="09:00am">09 : 00 am</option>
-                    <option value="010:00am">10 : 00 am</option>
-                    <option value="011:00am">11 : 00 am</option>
-                    <option value="012:00am">12 : 00 am</option>
+                    <option value="10:00am">10 : 00 am</option>
+                    <option value="11:00am">11 : 00 am</option>
+                    <option value="12:00am">12 : 00 am</option>
                     <option value="01:00pm">01 : 00 pm</option>
                     <option value="02:00pm">02 : 00 pm</option>
                     <option value="03:00pm">03 : 00 pm</option>
@@ -423,13 +449,13 @@
           
 
         </div>
-      </section>
-
+      </section>  -->
+      <%- include("contact") %>
  
     
 
     
-      <script src="kbtcafe.js" type="module"></script>
+    <script src="/js/kbtcafe.js"></script>
       
 </main>
 </body>

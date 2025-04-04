@@ -4,35 +4,37 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Item Quantity</title>
-    <link rel="stylesheet" href="/item-qty.css">
+    <link rel="stylesheet" href="/css/item-qty.css">
 </head>
 <body>
+    <%- include("includes/navbar") %>
     <main>
-        <h1 class="headline-2 section-subtitle" style="margin-left: 21rem;">KBT CAFE</h1>
+        <h1 class="headline" style="margin-top: 4rem;">KBT CAFE</h1>
+        <br>
+    <hr><p  style="line-height: 0.8;"><br></p><hr>
 
-        <%for(let item of items){%>
-            <div class="display">
-                <img src="" alt="" class="itm-image">
-                <div class="itm-name"><%=item.name%></div>
-                <div class="itm-price"><%=item.price%></div>
-                
-                <form method="post" action="/kbt/<%=item.id%>/?_method=PATCH">
-                    <select name="qty" id="">
-                        <option value="1">1</option>
-                        <option value="2">2</option>
-                        <option value="3">3</option>
-                        <option value="4">4</option>
-                        <option value="5">5</option>
-                        <option value="6">6</option>
-                    </select>
-                </form>
-
-            </div>
-        <%}%>
-       
-
-    </main>
-
+        <%for(let item of select_itm){%>
     
+            <div class="display">
+                <img src="<%=item.src%>" alt=<%=item.name%> class="itm-image">
+                <div class="itm-name"><%=item.name%></div>
+                <div class="itm-price">Rs <%=item.price%></div>
+                
+                <form method="post" action="/kbt/<%=item.id%>?_method=PATCH" >
+                    <input type="text" name="qty" placeholder="enter the quantity" class="input">
+                    <button class="save">save</button>
+                  
+                </form>
+            </div>
+            <hr>
+        <%}%>
+        <p style="line-height: 0.8;"><br></p><hr>
+        <div class="gT-data">
+            <form action="/kbt/bill"><button class="gb">Generate Bill</button></form>
+        </div>
+        
+        
+    </main>
+    <script src="/js/kbtcafe.js"></script>
 </body>
 </html>
