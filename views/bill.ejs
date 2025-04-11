@@ -11,12 +11,31 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Forum&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet"> 
     <link rel="stylesheet" href="/css/bill.css">
+    <style>
+        .payment{
+            color: blue; background-color: burlywood; padding: 0.8rem; 
+            border-radius: 1rem; text-align: center;
+            font-size: 1.2rem; margin-top: 1.2rem; margin-left: 18rem;
+        }
+        .payment:active{
+            color: red;
+        }
+    </style>
 </head>
 <body>
     
     <main>
         <%- include("includes/navbar") %>
-        <section class="sec-1"></section>
+        <section class="sec-1">
+            <form action="/kbt/back">
+              <button style="left:1">
+                <div class="back">
+                    <i class="fa-solid fa-arrow-left" style="font-size: 1rem; margin-right: 0.7rem;"></i>
+                    <p style="font-size: 1.2rem;">Back</p>
+                </div>
+                </button>
+            </form>
+        </section>
 
         <section class="sec-2" style="margin-top: 5rem;" >
             <h1 class="headline-2">KBT CAFE</h1>
@@ -39,13 +58,13 @@
            <hr>
             
          
-    <%for(let item of select_itm){%>
+    <%for(let item of billItems){%>
         <div class="display">
             
-            <div class="itm-name"><%=item.name%></div>
-            <div class="itm-qty"><%=item.qty%></div>
+            <div class="itm-name"><%=item.title%></div>
+            <div class="itm-qty"><%=item.quantity%></div>
             <div class="itm-price"><%=item.price%></div>
-            <div class="itm-total"><%=item.price*item.qty%></div>
+            <div class="itm-total"><%=item.total%></div>
             
         </div>
     <%}%>
@@ -55,23 +74,31 @@
         
             <div class="bill-1" >
                 <div style="width: 50%;">
-                    <p>Total Qty : <%=it_count%> </p>
+                    <p>Total Qty : <%= itemTotal %> </p>
                 </div>
                 <div style="width: 25%;">
                     <p>Sub Total</p>
                 </div>
                 <div style="width: 25%;">
-                    <p><%=t_price%>.00</p>
+                    <p><%=grandTotal%>.00</p>
                 </div>
             </div>
            <hr>
             <div class="GT">
-                <h2>Grand Total :&nbsp;&nbsp; Rs <%=t_price%>.00</h2>
+                <h2>Grand Total :&nbsp;&nbsp; Rs <%=grandTotal%>.00</h2>
             </div>
           <hr>
+          <form action="/kbt/payment" method="get">
+            <button class="payment">
+                Proceed to Payment</button>
+          </form>
         </section>
 
         <section class="sec-3"></section>
     </main>
+   
+        <%- include("includes/footer") %>
+
+    
 </body>
 </html> 

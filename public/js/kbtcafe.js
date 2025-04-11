@@ -1,14 +1,18 @@
 let count = 0;
 
-document.addEventListener('DOMContentLoaded', () => {
-    document.querySelectorAll('form#addcart').forEach((form) => {
-        form.addEventListener('submit', function (event) {
-            count+=1;    
-            let noofitems = document.querySelector(".noofitems");
-            noofitems.innerText=count;        
-        });
-    });
-});
+
+// let addcart = document.querySelectorAll(".custom-card-btn");
+
+// for(let btn of addcart){
+//   btn.addEventListener("click",()=>{
+//     count+=1;
+//     console.log("Btn was click");
+//     let noofitems = document.querySelectorAll(".noofitems");
+//     noofitems[0].innerText=count;
+//     console.log(noofitems[0].innerText);
+//   })
+// }
+
 
 
 // checking the mob no is valid or not

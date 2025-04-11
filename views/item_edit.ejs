@@ -27,33 +27,25 @@
 <body>
     <%- include("includes/navbar") %>
     <div>h</div>
-    <h1 style="margin-top: 4rem; color: goldenrod; text-align: center;" class="section-title">Edit your Reservation</h1>
+    <h1 style="margin-top: 4rem; color: goldenrod; text-align: center;" class="section-title">Edit Item Content</h1>
     <div class="row">
         <div class="col-8 offset-2">
-    <form action="/kbt/<%=reserv._id%>/edit?_method=PATCH" method="post">
+    <form action="/kbt/<%=item._id%>/item-edit?_method=PATCH" method="post">
         <div class="mb-3">
-            <label for="name" class="form-label">Name</label>
-            <input type="text" value="<%=reserv.name%>" name="reserv[name]" class="form-control">
+            <label for="title" class="form-label">Item Name</label>
+            <input type="text" value="<%=item.title%>" name="items[title]" class="form-control">
         </div>
         <div class="mb-3">
-            <label for="phone" class="form-label">Phone</label>
-            <input type="text" value="<%=reserv.phone%>" name="reserv[phone]" class="form-control">
+            <label for="price" class="form-label">Price</label>
+            <input type="text" value="<%=item.price%>" name="items[price]" class="form-control">
         </div>
         <div class="mb-3">
-            <label for="person" class="form-label">Person</label>
-            <input type="text" value="<%=reserv.person%>" name="reserv[person]" class="form-control">
+            <label for="image" class="form-label">Image</label>
+            <input type="text" value="<%=item.image.url%>" name="items[image.url]" class="form-control">
         </div>
         <div class="mb-3">
-            <label for="date" class="form-label">Date</label>
-            <input type="date" value="<%=reserv.date.toISOString().split('T')[0]%>" name="reserv[date]" class="form-control">
-        </div>
-        <div class="mb-3">
-            <label for="time" class="form-label">Time</label>
-            <input type="text" value="<%=reserv.time%>" name="reserv[time]" class="form-control">
-        </div>
-        <div class="mb-3">
-            <label for="message" class="form-label">Message</label>
-            <input type="text" value="<%=reserv.message%>" name="reserv[message]" class="form-control">
+            <label for="description" class="form-label">Description</label>
+            <input type="text" value="<%=item.description%>" name="items[description]" class="form-control">
         </div>
         <button class="btn btn-dark edit-btn mt-3 mb-3" style="padding:0.5rem 1.2rem;">Edit</button>
         <br>

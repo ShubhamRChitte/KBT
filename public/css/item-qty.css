@@ -272,7 +272,7 @@ button{
 }
 
 main{
-    padding: 3rem 10rem;
+    padding: 3rem 8rem;
 }
 
 /* navbar styling */
@@ -371,6 +371,8 @@ svg{
 .itm-image{
     height: 100px;
     width: 100px;
+    border-radius: 1rem;
+    margin-bottom: 1rem;
 }
 
 select{
@@ -406,7 +408,6 @@ select{
 }
 
 .gb{
-    margin-left:26rem ;
     margin-top: 1rem;
     padding: 10px 22px;
     font-size: 18px;
@@ -438,6 +439,24 @@ select{
 .gT-data{
     display: flex;
     justify-content: space-evenly;
-    align-items:center;
+   
     padding: 0 8rem;
+}
+.select-btn{
+  font-size: 1rem;
+  padding: 0.7rem;
+  color: black;
+  border-radius: 5px;
+}
+
+.remove{
+  background-color: #e9334f;
+  color: black;
+  padding:0rem 1rem;
+  border-radius: 5px;
+  font-size: 1rem;
+  height: 2.5rem;
+  text-align: center;
+  display: flex;
+  align-items: center;
 }

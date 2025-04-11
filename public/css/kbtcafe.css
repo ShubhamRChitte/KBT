@@ -390,6 +390,7 @@ svg{
 
 
 
+
 /* home style */
 
 .home{
@@ -692,20 +693,19 @@ textarea.input-field {
 
 
 
-.menu{
+/* .menu{
   height: 100vh;
   background-color: var(--eerie-black-2);
 }
 
 .menu .container{
-  background-image: url(./images/shape-5.png); 
-  background-size: contain;
+  background-image: url("/images/shape-5.png"); 
+  background-repeat: repeat;
 }
 
 
 .grid-list{
-  /* padding: 0rem 5rem; */
-  /* margin-top: 0rem; */
+ 
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -751,7 +751,7 @@ textarea.input-field {
   height: 100px;
   width: 140px;
   border-radius: 2rem;
-  /* padding: 1rem; */
+
 }
 
 .card-text{
@@ -776,7 +776,7 @@ textarea.input-field {
   text-transform: uppercase;
   padding: 1rem 2rem;
   border: 0.2rem solid var(--gold-crayola);
-  /* text-align: center; */
+  
   margin-left: 32rem;
 }
 
@@ -792,9 +792,169 @@ textarea.input-field {
   transform: scale(1.1);
 }
 .menu .menu-card .img-cover{
-  /* border-radius: 50%; */
+
   height: 100px;
   width: 100px;
-  /* background-color: red; */
-  /* padding:0.5rem; */
+ 
+} */
+
+
+
+/* ---------- */
+.menuset-1{
+  display: flex;
+  justify-content: space-evenly;
+  margin-top: 4rem;
 }
+
+.body{
+  padding:4rem 7rem;
+  background-color: var(--eerie-black-2);
+  background-image: url("/images/shape-2.png");
+  background-repeat:repeat ;
+  /* margin-top: 3rem; */
+}
+
+.card{
+    border: 1px solid white;
+    margin-bottom: 2rem !important;
+    padding: 2rem ;
+    background-color: var(--eerie-black-1);
+    background-image: url("/images/shape-5.png");
+    background-repeat: repeat;
+    margin:-2rem 1rem;
+    width: 30% !important;
+    border-radius: 2rem;
+    height: 22rem;
+  }
+  
+  .card-img-top{
+    border-radius: 1rem !important;
+    height: 10rem;
+    width: 50% !important;
+    object-fit: cover !important;
+    margin-left: 3.7rem;
+  }
+  
+  .card-body p{
+    margin-top: 1rem;
+    font-weight: 500;
+    color:#a6a6a6;
+  }
+
+  .card-text{
+    font-size: var(--fontSize-label-2);
+    line-height: 1.2;
+  }
+  
+  /* card hover effect */
+
+  
+  .card-links{
+    text-decoration: none;
+  }
+
+  .ti-pr{
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .ti-pr p{
+    color: gold;
+    font-size: larger;
+  }
+
+  .btn-dark{
+    background-color: red;
+    color: white;
+    padding:0.7rem 0.9rem;
+    border-radius: 0.3rem;
+    /* margin-bottom: -1.5rem; */
+    margin-top: 1rem;
+    margin-left: 4.5rem;
+    font-size: medium;
+  }
+  .btn-dark:active{
+    background-color: var(--eerie-black-2) !important;
+    color: var(--gold-crayola) !important;
+    box-shadow: 0 0 0 0.25rem rgba(228, 197, 144, 0.5);
+  }
+  .description{
+    margin-top:1rem   ;
+  }
+
+  .view-menu{
+    padding: 0.8rem;
+    color: var(--gold-crayola);
+    letter-spacing: var(--letterSpacing-1);
+    font-size: var(--font-size-s);
+    font-weight: var(--font-weight-medium);
+    text-transform: uppercase;
+    padding: 1rem 2rem;
+    border: 0.2rem solid var(--gold-crayola);
+    margin-left: 26rem;
+  }
+  
+  .view-menu:hover{
+    background-color: var(--gold-crayola);
+    color: red ;
+  }
+
+/* reservation all style */
+.reserv-all{
+  display: flex;
+  padding: 0.6rem;
+  border: 1px solid white;
+  /* justify-content: center; */
+  /* text-align: center; */
+}
+
+.reserv-btn-1{
+  color: black;
+  background-color:#ff9671;
+  padding: 0.6rem 1.3rem;
+  position: absolute;
+  right:8rem;
+  margin-top: 0.4rem;
+  text-align: center;
+  border-radius: 5px;
+}
+
+
+.reserv-btn-1:active{
+  background-color: var(--secondary-color);
+}
+
+.reserv-btn-2{
+  color: black;
+  background-color: #ffc75f;
+  padding: 0.6rem 0.9rem;
+  position: absolute;
+  margin-top: 0.4rem;
+  right:3rem;
+  border-radius: 5px;
+  text-align: center;
+}
+ 
+.reserv-btn-2:active{
+  background-color: var(--secondary-color);
+}
+
+.reserv-btn-3{
+  color: black;
+  background-color:#ff6f91;
+  padding: 0.6rem 0.9rem;
+  position: absolute;
+  margin-top: 0.4rem;
+  right:13.2rem;
+  border-radius: 5px;
+  text-align: center;
+}
+
+.reserv-btn-3:active{
+  background-color: var(--secondary-color);
+  font-size: title-;
+}
+
+
+/* payment style */
