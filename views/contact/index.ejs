@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us - KBT Cafe</title>
+    <link rel="stylesheet" href="/css/kbtcafe.css">
+    <style>
+        .contact-section {
+            padding-top: 120px;
+            background: url('/images/shape-2.png') repeat;
+            background-color: var(--eerie-black-2);
+        }
+        
+        .form {
+            position: relative;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(5px);
+        }
+        
+        .form-left, .form-right {
+            position: relative;
+            z-index: 1;
+        }
+        
+        .form-left {
+            background-color: rgba(18, 17, 17, 0.9);
+        }
+        
+        .form-right {
+            background-color: rgba(14, 13, 11, 0.9);
+        }
+        
+        .input-field {
+            transition: all 0.3s ease;
+            border: 1px solid transparent;
+        }
+        
+        .input-field:focus {
+            border-color: var(--gold-crayola);
+            box-shadow: 0 0 10px rgba(228, 197, 144, 0.3);
+            outline: none;
+        }
+        
+        .input-wrapper {
+            margin-bottom: 15px;
+        }
+        
+        .btn-secondary {
+            cursor: pointer;
+            font-weight: bold;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .btn-secondary::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            transition: 0.5s;
+        }
+        
+        .btn-secondary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+        }
+        
+        .btn-secondary:hover::before {
+            left: 100%;
+        }
+        
+        .separator {
+            margin: 15px auto;
+        }
+        
+        .headline-1, .headline-2 {
+            background: linear-gradient(to right, #e4c590, #ffffff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 20px;
+        }
+        
+        .contact-number {
+            font-weight: bold;
+            letter-spacing: 1px;
+        }
+        
+        .shape-7, .shape-71 {
+            opacity: 0.1;
+            z-index: 0;
+        }
+        
+        @media screen and (max-width: 768px) {
+            .contact-section {
+                padding-top: 100px;
+                padding-bottom: 50px;
+            }
+            
+            .input-wrapper {
+                gap: 15px;
+            }
+            
+            .headline-1 {
+                font-size: calc(1.6rem + 1vw);
+            }
+            
+            .headline-2 {
+                font-size: calc(1.4rem + 1vw);
+            }
+            
+            .btn-secondary {
+                width: 100%;
+                padding: 15px;
+            }
+            
+            .shape-7, .shape-71 {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <%- include("../includes/navbar") %>
+    <section class="contact-section" id="contact">
+        <div class="container">
+
+          <div class="form contact-form">
+
+            <form action="/kbt/contact/send" method="post" class="form-left" id="contactForm">
+
+              <h2 class="headline-2 text-center">Contact Us</h2>
+
+              <p class="form-text text-center">
+                Call us at <a href="tel:+88123123456" class="link contact-number">+88-123-123456</a>
+                or fill out the form below
+              </p>
+
+              <div class="input-wrapper">
+                <input type="text" name="name" placeholder="Your Name" class="input-field" required autocomplete="name">
+
+                <input type="email" name="email" placeholder="Email Address" class="input-field" required autocomplete="email">
+              </div>
+
+              <div class="input-wrapper">
+                <input type="tel" name="phone" placeholder="Phone Number" class="input-field" required maxlength="10" minlength="10" id="phone" autocomplete="tel">
+                
+                <input type="text" name="subject" placeholder="Subject" class="input-field" required>
+              </div>
+
+              <textarea name="message" placeholder="Your Message" class="input-field" style="margin-bottom: 2rem; min-height: 150px;" required></textarea>
+
+              <button type="submit" class="btn btn-secondary">
+                <span class="text text-1">Send Message</span>
+              </button>
+
+            </form>
+
+            <div class="form-right text-center" style="background-image: url(/images/form-pattern.png)">
+
+              <h2 class="headline-1 text-center">Contact Us</h2>
+              <div class="separator"></div>
+              <p class="contact-label">Phone</p>
+
+              <a href="tel:+88123123456" class="body-1 contact-number hover-underline">+88-123-123456</a>
+              <div class="separator"></div>
+
+              <p class="contact-label">Location</p>
+
+              <p class="box4 add">
+                KBT Cafe, KBT College of Engineering, <br>
+                Nashik, 422001, Maharashtra.
+              </p>
+              <div class="separator"></div>
+              <div class="box5">
+                <p class="box4">Daily: 8.00 am to 10.00 pm</p>
+                <p class="box4">booking@kbtcafe.com</p>
+                <p class="box4">kbtcafe@gmail.com</p>
+              </div>
+              
+            </div>
+            <img src="/images/shape-7.png" alt="shape" class="shape-7 img-cover">
+            <img src="/images/shape-7.png" alt="shape" class="shape-71 img-cover">
+          </div>
+          
+        </div>
+      </section>
+    <script src="/js/kbtcafe.js"></script>
+    <script>
+      document.addEventListener('DOMContentLoaded', function() {
+        // Phone number validation
+        const phoneInput = document.getElementById("phone");
+        if (phoneInput) {
+          // Restrict input to 10 digits
+          phoneInput.addEventListener("input", function () {
+            this.value = this.value.replace(/\D/g, "").slice(0, 10); // Allow only digits and limit to 10 characters
+          });
+        }
+        
+        // Form validation
+        const contactForm = document.getElementById("contactForm");
+        if (contactForm) {
+          contactForm.addEventListener("submit", function (event) {
+            if (phoneInput && phoneInput.value.length !== 10) {
+              alert("Please enter valid Mobile No");
+              event.preventDefault();
+            }
+          });
+        }
+      });
+    </script>
+</body>
+</html> 

@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book Your Table - KBT Cafe</title>
+    <link rel="stylesheet" href="/css/kbtcafe.css">
+    <style>
+        /* Main container styles */
+        .booking-container {
+            padding-top: 100px;
+            padding-bottom: 50px;
+            background: url('/images/shape-2.png') repeat;
+            background-color: var(--eerie-black-2);
+            min-height: 100vh;
+        }
+        
+        /* Card styles */
+        .booking-card {
+            background-color: rgba(18, 17, 17, 0.95);
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+            margin-bottom: 30px;
+            border: 1px solid rgba(228, 197, 144, 0.2);
+        }
+        
+        .booking-card-header {
+            background-color: rgba(228, 197, 144, 0.1);
+            padding: 20px;
+            border-bottom: 1px solid rgba(228, 197, 144, 0.2);
+        }
+        
+        .booking-card-body {
+            padding: 25px;
+        }
+        
+        /* Form styles */
+        .booking-form label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 8px;
+            color: var(--gold-crayola);
+        }
+        
+        .booking-form input,
+        .booking-form select {
+            width: 100%;
+            padding: 12px 15px;
+            margin-bottom: 25px;
+            background-color: rgba(255, 255, 255, 0.07);
+            border: 1px solid rgba(228, 197, 144, 0.3);
+            border-radius: 8px;
+            color: #fff;
+            font-size: 16px;
+            transition: all 0.3s ease;
+        }
+        
+        .booking-form select {
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            appearance: none;
+            background-image: url("data:image/svg+xml;utf8,<svg fill='%23e4c590' height='24' viewBox='0 0 24 24' width='24' xmlns='http://www.w3.org/2000/svg'><path d='M7 10l5 5 5-5z'/><path d='M0 0h24v24H0z' fill='none'/></svg>");
+            background-repeat: no-repeat;
+            background-position: right 10px center;
+            padding-right: 30px;
+        }
+        
+        .booking-form select option {
+            background-color: #222222;
+            color: #ffffff;
+            padding: 10px;
+        }
+        
+        .booking-form input:focus,
+        .booking-form select:focus {
+            outline: none;
+            border-color: var(--gold-crayola);
+            box-shadow: 0 0 10px rgba(228, 197, 144, 0.3);
+        }
+        
+        /* Time slot selection */
+        .time-slots {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 25px;
+        }
+        
+        .time-slot {
+            background-color: rgba(255, 255, 255, 0.07);
+            border: 1px solid rgba(228, 197, 144, 0.3);
+            border-radius: 8px;
+            padding: 12px 15px;
+            color: #fff;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            flex: 1 0 calc(25% - 10px);
+            text-align: center;
+            font-weight: bold;
+        }
+        
+        .time-slot:hover {
+            background-color: rgba(228, 197, 144, 0.2);
+        }
+        
+        .time-slot.selected {
+            background-color: var(--gold-crayola);
+            color: #000;
+        }
+        
+        /* Submit button */
+        .booking-submit {
+            background-color: var(--gold-crayola);
+            color: #000;
+            border: none;
+            border-radius: 8px;
+            padding: 15px 25px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: block;
+            width: 100%;
+            margin-top: 15px;
+        }
+        
+        .booking-submit:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+        }
+        
+        /* Reservation summary */
+        .reservation-summary {
+            background-color: rgba(228, 197, 144, 0.1);
+            border: 1px solid rgba(228, 197, 144, 0.3);
+            border-radius: 10px;
+            padding: 20px;
+            margin-top: 20px;
+        }
+        
+        .reservation-summary h3 {
+            color: var(--gold-crayola);
+            margin-bottom: 15px;
+            text-align: center;
+        }
+        
+        .summary-item {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid rgba(228, 197, 144, 0.2);
+        }
+        
+        .summary-item:last-child {
+            border-bottom: none;
+        }
+        
+        .summary-label {
+            font-weight: bold;
+            color: #ccc;
+        }
+        
+        .summary-value {
+            color: #fff;
+        }
+        
+        /* Success message */
+        .booking-success {
+            display: none;
+            background-color: rgba(40, 167, 69, 0.2);
+            border: 1px solid #28a745;
+            border-radius: 10px;
+            padding: 25px;
+            text-align: center;
+            margin-top: 20px;
+        }
+        
+        .booking-success h3 {
+            color: #28a745;
+            margin-bottom: 15px;
+        }
+        
+        /* Responsive styles */
+        @media (max-width: 768px) {
+            .time-slot {
+                flex: 1 0 calc(33.33% - 10px);
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .time-slot {
+                flex: 1 0 calc(50% - 10px);
+            }
+        }
+    </style>
+</head>
+<body>
+    <%- include("includes/navbar") %>
+    
+    <div class="booking-container">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 offset-lg-2">
+                    <div class="booking-card">
+                        <div class="booking-card-header">
+                            <h2 class="text-center">Reserve Your Table</h2>
+                            <p class="text-center" style="color: #ccc;">Select your preferred date and time to book your table</p>
+                        </div>
+                        
+                        <div class="booking-card-body">
+                            <form id="table-booking-form" action="/kbt/reserv" method="POST" class="booking-form">
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label for="name">Your Name</label>
+                                        <input type="text" id="name" name="name" required placeholder="Enter your full name">
+                                    </div>
+                                
+                                    <div class="form-group">
+                                        <label for="phone">Phone Number</label>
+                                        <input type="tel" id="phone" name="phone" required placeholder="Enter your 10-digit phone number" maxlength="10">
+                                    </div>
+                                </div>
+                                
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label for="reservation-date">Reservation Date</label>
+                                        <input type="date" id="reservation-date" name="date" required min="<%=new Date().toISOString().split('T')[0]%>">
+                                    </div>
+                                
+                                    <div class="form-group">
+                                        <label for="party-size">Number of Guests</label>
+                                        <select id="party-size" name="person" required>
+                                            <option value="" disabled selected>Select number of guests</option>
+                                            <option value="1">1 Person</option>
+                                            <option value="2">2 People</option>
+                                            <option value="3">3 People</option>
+                                            <option value="4">4 People</option>
+                                            <option value="5">5 People</option>
+                                            <option value="6">6 People</option>
+                                            <option value="7">7 People</option>
+                                            <option value="8">8 People</option>
+                                            <option value="9">9 People</option>
+                                            <option value="10">10 People</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label>Select a Time Slot</label>
+                                    <div class="time-slots">
+                                        <div class="time-slot" data-time="11:00am">11:00 AM</div>
+                                        <div class="time-slot" data-time="12:00pm">12:00 PM</div>
+                                        <div class="time-slot" data-time="01:00pm">1:00 PM</div>
+                                        <div class="time-slot" data-time="02:00pm">2:00 PM</div>
+                                        <div class="time-slot" data-time="06:00pm">6:00 PM</div>
+                                        <div class="time-slot" data-time="07:00pm">7:00 PM</div>
+                                        <div class="time-slot" data-time="08:00pm">8:00 PM</div>
+                                        <div class="time-slot" data-time="09:00pm">9:00 PM</div>
+                                    </div>
+                                    <input type="hidden" id="selected-time" name="time" required>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label for="special-requests">Special Requests (Optional)</label>
+                                    <input type="text" id="special-requests" name="message" placeholder="Any special requests or dietary requirements?">
+                                </div>
+                                
+                                <!-- Hidden field for table_id -->
+                                <input type="hidden" name="table_id" value="1">
+                                
+                                <div class="reservation-summary" id="reservation-summary">
+                                    <h3>Reservation Summary</h3>
+                                    <div class="summary-content">
+                                        <p class="text-center" style="color: #ccc;">Complete the form to see your reservation details</p>
+                                    </div>
+                                </div>
+                                
+                                <button type="submit" class="booking-submit">Confirm Reservation</button>
+                            </form>
+                            
+                            <div class="booking-success" id="booking-success">
+                                <h3>Reservation Confirmed!</h3>
+                                <p>Your table has been reserved. We've sent a confirmation to your phone.</p>
+                                <p>We look forward to serving you!</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const timeSlots = document.querySelectorAll('.time-slot');
+            const selectedTimeInput = document.getElementById('selected-time');
+            const bookingForm = document.getElementById('table-booking-form');
+            const reservationSummary = document.getElementById('reservation-summary');
+            const bookingSuccess = document.getElementById('booking-success');
+            
+            // Handle time slot selection
+            timeSlots.forEach(slot => {
+                slot.addEventListener('click', function() {
+                    // Clear previous selection
+                    timeSlots.forEach(s => s.classList.remove('selected'));
+                    
+                    // Add selected class
+                    this.classList.add('selected');
+                    
+                    // Update hidden input
+                    selectedTimeInput.value = this.getAttribute('data-time');
+                    
+                    // Update summary
+                    updateReservationSummary();
+                });
+            });
+            
+            // Handle form submission
+            bookingForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                // Validate time slot selection
+                if (!selectedTimeInput.value) {
+                    alert('Please select a time slot for your reservation.');
+                    return;
+                }
+                
+                // Validate phone number
+                const phoneInput = document.getElementById('phone');
+                if (phoneInput.value.length !== 10 || !/^\d+$/.test(phoneInput.value)) {
+                    alert('Please enter a valid 10-digit phone number.');
+                    phoneInput.focus();
+                    return;
+                }
+                
+                // In a real application, you would submit the form to the server
+                // For this example, we'll just show the success message
+                bookingForm.style.display = 'none';
+                bookingSuccess.style.display = 'block';
+                
+                // In production, uncomment this line to actually submit the form
+                // this.submit();
+            });
+            
+            // Update reservation summary
+            function updateReservationSummary() {
+                const name = document.getElementById('name').value;
+                const date = document.getElementById('reservation-date').value;
+                const time = selectedTimeInput.value;
+                const guests = document.getElementById('party-size').value;
+                
+                if (name && date && time && guests) {
+                    // Format date
+                    const formattedDate = new Date(date).toLocaleDateString('en-US', {
+                        weekday: 'long',
+                        year: 'numeric',
+                        month: 'long',
+                        day: 'numeric'
+                    });
+                    
+                    // Format time
+                    const formattedTime = time.replace('am', ' AM').replace('pm', ' PM');
+                    
+                    // Update summary content
+                    reservationSummary.querySelector('.summary-content').innerHTML = `
+                        <div class="summary-item">
+                            <span class="summary-label">Name:</span>
+                            <span class="summary-value">${name}</span>
+                        </div>
+                        <div class="summary-item">
+                            <span class="summary-label">Date:</span>
+                            <span class="summary-value">${formattedDate}</span>
+                        </div>
+                        <div class="summary-item">
+                            <span class="summary-label">Time:</span>
+                            <span class="summary-value">${formattedTime}</span>
+                        </div>
+                        <div class="summary-item">
+                            <span class="summary-label">Guests:</span>
+                            <span class="summary-value">${guests} ${parseInt(guests) === 1 ? 'Person' : 'People'}</span>
+                        </div>
+                    `;
+                }
+            }
+            
+            // Update summary when any form field changes
+            const formInputs = document.querySelectorAll('#name, #reservation-date, #party-size');
+            formInputs.forEach(input => {
+                input.addEventListener('change', updateReservationSummary);
+            });
+        });
+    </script>
+</body>
+</html> 

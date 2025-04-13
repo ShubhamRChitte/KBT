@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bill</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    
+    <!-- google fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Forum&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet"> 
+    <link rel="stylesheet" href="/css/bill.css">
+    <style>
+        body {
+            background-color: #1a1a1a;
+            color: #f4ebd0;
+        }
+        
+        .sec-2 {
+            background-color: rgba(30, 30, 30, 0.9);
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(218, 165, 32, 0.2);
+        }
+        
+        .headline-2 {
+            color: goldenrod;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+        }
+        
+        .custom-info h3, .name h3 {
+            color: #f4ebd0;
+        }
+        
+        .display {
+            transition: transform 0.3s ease;
+        }
+        
+        .display:hover {
+            transform: translateY(-3px);
+            background-color: rgba(218, 165, 32, 0.1);
+        }
+        
+        .itm-name, .itm-qty, .itm-price, .itm-total {
+            color: #d4c9a8;
+        }
+        
+        .GT h2 {
+            color: goldenrod;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+        }
+        
+        .payment {
+            background: linear-gradient(to right, #c19a49, goldenrod, #c19a49);
+            color: #1a1a1a;
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            text-align: center;
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-top: 1.5rem;
+            margin-left: auto;
+            margin-right: auto;
+            display: block;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .payment::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: 0.5s;
+        }
+        
+        .payment:hover {
+            background: linear-gradient(to right, #d4af37, #f4cd6d, #d4af37);
+            box-shadow: 0 8px 25px rgba(218, 165, 32, 0.4);
+            transform: translateY(-3px);
+        }
+        
+        .payment:hover::before {
+            left: 100%;
+        }
+        
+        .payment:active {
+            transform: translateY(1px);
+            box-shadow: 0 2px 10px rgba(218, 165, 32, 0.3);
+        }
+        
+        hr {
+            border-color: rgba(218, 165, 32, 0.2);
+        }
+        
+        .back {
+            background-color: transparent;
+            color: #f4ebd0;
+            border: 1px solid rgba(218, 165, 32, 0.3);
+            transition: all 0.3s ease;
+        }
+        
+        .back:hover {
+            background-color: rgba(218, 165, 32, 0.1);
+            color: goldenrod;
+        }
+    </style>
+</head>
+<body>
+    
+    <main>
+        <%- include("includes/navbar") %>
+        <section class="sec-1">
+            <form action="/kbt/back">
+              <button style="left:1">
+                <div class="back">
+                    <i class="fa-solid fa-arrow-left" style="font-size: 1rem; margin-right: 0.7rem;"></i>
+                    <p style="font-size: 1.2rem;">Back</p>
+                </div>
+                </button>
+            </form>
+        </section>
+
+        <section class="sec-2" style="margin-top: 5rem;" >
+            <h1 class="headline-2">KBT CAFE</h1>
+            <hr>
+            <br>
+            <div class="custom-info">
+                <h3>Name : <%= req.user ? req.user.username : 'Guest' %></h3>
+                <h3>Date : <%=date%></h3>
+                <h3>Time : <%=time%></h3>
+                <h3>Bill No : <%= orderNumber %></h3>
+            </div>
+            <br><hr>
+            <div class="name">
+                
+                <h3>Item</h3>   
+                <h3>Quantity</h3>
+                <h3>Price</h3>
+                <h3>Amount</h3>
+            </div>
+           <hr>
+            
+         
+    <%for(let item of billItems){%>
+        <div class="display">
+            
+            <div class="itm-name"><%=item.title%></div>
+            <div class="itm-qty"><%=item.quantity%></div>
+            <div class="itm-price"><%=item.price%></div>
+            <div class="itm-total"><%=item.total%></div>
+            
+        </div>
+    <%}%>
+        <hr>
+            
+            
+        
+            <div class="bill-1" >
+                <div style="width: 50%;">
+                    <p>Total Qty : <%= itemTotal %> </p>
+                </div>
+                <div style="width: 25%;">
+                    <p>Sub Total</p>
+                </div>
+                <div style="width: 25%;">
+                    <p><%=grandTotal%>.00</p>
+                </div>
+            </div>
+           <hr>
+            <div class="GT">
+                <h2>Grand Total :&nbsp;&nbsp; Rs <%=grandTotal%>.00</h2>
+            </div>
+          <hr>
+          <form action="/kbt/payment" method="get">
+            <button class="payment">
+                <i class="fas fa-credit-card" style="margin-right: 10px;"></i>Proceed to Payment
+            </button>
+          </form>
+        </section>
+
+        <section class="sec-3"></section>
+    </main>
+   
+        <%- include("includes/footer") %>
+
+    
+</body>
+</html> 

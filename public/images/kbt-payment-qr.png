@@ -1,0 +1,5 @@
+# This is a placeholder for the QR code image.
+# Please replace this file with an actual QR code image from your local system.
+# You can generate a QR code at: https://www.qr-code-generator.com/
+# The QR code should point to a payment UPI ID or payment link.
+# After generating, save the image to this location: public/images/kbt-payment-qr.png 

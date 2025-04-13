@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book a Table - KBT Cafe</title>
+    <link rel="stylesheet" href="/css/kbtcafe.css">
+    <style>
+        /* Enhanced booking form styling */
+        .reservation {
+            padding-top: 120px;
+            background: url('/images/shape-2.png') repeat;
+            background-color: var(--eerie-black-2);
+        }
+        
+        .form {
+            position: relative;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(5px);
+        }
+        
+        .form-left, .form-right {
+            position: relative;
+            z-index: 1;
+        }
+        
+        .form-left {
+            background-color: rgba(18, 17, 17, 0.9);
+        }
+        
+        .form-right {
+            background-color: rgba(14, 13, 11, 0.9);
+        }
+        
+        .input-field {
+            transition: all 0.3s ease;
+            border: 1px solid transparent;
+        }
+        
+        .input-field:focus {
+            border-color: var(--gold-crayola);
+            box-shadow: 0 0 10px rgba(228, 197, 144, 0.3);
+            outline: none;
+        }
+        
+        .input-wrapper {
+            margin-bottom: 25px;
+        }
+        
+        .btn-secondary {
+            cursor: pointer;
+            font-weight: bold;
+            position: relative;
+            overflow: hidden;
+            margin-top: 30px;
+        }
+        
+        .btn-secondary::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            transition: 0.5s;
+        }
+        
+        .btn-secondary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+        }
+        
+        .btn-secondary:hover::before {
+            left: 100%;
+        }
+        
+        .separator {
+            margin: 15px auto;
+        }
+        
+        .headline-1, .headline-2 {
+            background: linear-gradient(to right, #e4c590, #ffffff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 20px;
+        }
+        
+        .contact-number {
+            font-weight: bold;
+            letter-spacing: 1px;
+        }
+        
+        .shape-7, .shape-71 {
+            opacity: 0.1;
+            z-index: 0;
+        }
+        
+        /* Time Slot Selection Styles */
+        .time-slot-selection {
+            margin: 30px 0;
+            padding: 20px;
+            background-color: rgba(30, 30, 30, 0.8);
+            border-radius: 10px;
+            border: 1px solid rgba(228, 197, 144, 0.3);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+        }
+        
+        .time-slots-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            margin-top: 15px;
+            justify-content: center;
+        }
+        
+        .time-slot-group {
+            flex: 1;
+            min-width: 200px;
+        }
+        
+        .time-slot-group h4 {
+            color: var(--gold-crayola);
+            text-align: center;
+            margin-bottom: 10px;
+            font-size: 1.1rem;
+            border-bottom: 1px solid rgba(228, 197, 144, 0.3);
+            padding-bottom: 5px;
+        }
+        
+        .time-slots {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            justify-content: center;
+        }
+        
+        .time-slot-btn {
+            background-color: #333;
+            color: white;
+            border: 1px solid rgba(228, 197, 144, 0.3);
+            border-radius: 5px;
+            padding: 10px 15px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            width: calc(50% - 5px);
+            font-size: 0.9rem;
+        }
+        
+        .time-slot-btn:hover {
+            background-color: rgba(228, 197, 144, 0.2);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+        
+        .time-slot-btn.selected {
+            background-color: var(--gold-crayola);
+            color: black;
+            font-weight: bold;
+            box-shadow: 0 0 10px rgba(228, 197, 144, 0.5);
+        }
+        
+        .selected-time-display {
+            margin-top: 20px;
+            text-align: center;
+            padding: 10px;
+            background-color: rgba(40, 40, 40, 0.8);
+            border-radius: 5px;
+            color: white;
+        }
+        
+        .selected-time-display strong {
+            color: var(--gold-crayola);
+            font-size: 1.1rem;
+        }
+        
+        /* Toast notification */
+        .table-selection-feedback {
+            font-weight: bold;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.4);
+        }
+        
+        /* Booking Success Message */
+        .booking-success {
+            background-color: rgba(40, 167, 69, 0.2);
+            border: 1px solid #28a745;
+            padding: 20px;
+            border-radius: 10px;
+            margin-top: 20px;
+            text-align: center;
+            display: none;
+        }
+        
+        .booking-success h3 {
+            color: #28a745;
+            margin-bottom: 10px;
+        }
+        
+        .booking-success p {
+            color: #d4c9a8;
+        }
+        
+        /* Media queries for responsive time slots */
+        @media screen and (max-width: 768px) {
+            .time-slots-container {
+                flex-direction: column;
+            }
+            
+            .time-slot-group {
+                width: 100%;
+            }
+            
+            .time-slot-btn {
+                width: calc(33.33% - 7px);
+                padding: 8px 5px;
+                font-size: 0.85rem;
+            }
+            
+            .reservation {
+                padding-top: 100px;
+                padding-bottom: 50px;
+            }
+            
+            .input-wrapper {
+                gap: 15px;
+            }
+            
+            .headline-1 {
+                font-size: calc(1.6rem + 1vw);
+            }
+            
+            .headline-2 {
+                font-size: calc(1.4rem + 1vw);
+            }
+            
+            .btn-secondary {
+                width: 100%;
+                padding: 15px;
+            }
+            
+            .shape-7, .shape-71 {
+                display: none;
+            }
+        }
+        
+        @media screen and (max-width: 480px) {
+            .time-slot-btn {
+                width: calc(50% - 5px);
+            }
+        }
+    </style>
+</head>
+<body>
+    <%- include("includes/navbar") %>
+    <section class="reservation" id="reservation">
+        <div class="container">
+
+          <div class="form reservation-form">
+
+            <form action="/kbt/reserv" method="post" class="form-left" id="booking-form">
+
+              <h2 class="headline-2 text-center">Table Reservation</h2>
+
+              <p class="form-text text-center">
+                For immediate booking assistance, call <a href="tel:+88123123456" class="link contact-number">+88-123-123456</a>
+                or complete the reservation form below
+              </p>
+
+              <div class="input-wrapper">
+                <input type="text" name="name" placeholder="Your Name" class="input-field" required autocomplete="name" id="customer-name">
+              </div>
+
+              <div class="input-wrapper">
+                <input type="tel" name="phone" placeholder="Phone Number" class="input-field" required maxlength="10" minlength="10" id="customer-phone" autocomplete="tel">
+              </div>
+
+              <!-- Hidden fields for compatibility with existing backend -->
+              <input type="hidden" name="person" value="2" id="people-count">
+              <input type="hidden" name="date" value="<%=new Date().toISOString().split('T')[0]%>" id="booking-date">
+              <input type="hidden" name="table_id" value="1" id="selected-table-id">
+              <input type="hidden" name="selected-table-name" value="Standard Table" id="selected-table-name">
+              <input type="hidden" name="message" value="No special requests">
+
+              <!-- Time selection -->
+              <input type="hidden" name="time" id="booking-time">
+
+              <!-- Time Slot Selection - Visual Interface -->
+              <div class="time-slot-selection">
+                <h3 class="headline-2 text-center">Select a Time Slot</h3>
+                <p class="text-center" style="color: #d4c9a8; margin-bottom: 15px;">Pick your preferred dining time</p>
+                
+                <div class="time-slots-container">
+                  <div class="time-slot-group">
+                    <h4>Morning</h4>
+                    <div class="time-slots">
+                      <button type="button" class="time-slot-btn" data-time="08:00am">8:00 AM</button>
+                      <button type="button" class="time-slot-btn" data-time="09:00am">9:00 AM</button>
+                      <button type="button" class="time-slot-btn" data-time="10:00am">10:00 AM</button>
+                      <button type="button" class="time-slot-btn" data-time="11:00am">11:00 AM</button>
+                    </div>
+                  </div>
+                  
+                  <div class="time-slot-group">
+                    <h4>Afternoon</h4>
+                    <div class="time-slots">
+                      <button type="button" class="time-slot-btn" data-time="12:00pm">12:00 PM</button>
+                      <button type="button" class="time-slot-btn" data-time="01:00pm">1:00 PM</button>
+                      <button type="button" class="time-slot-btn" data-time="02:00pm">2:00 PM</button>
+                      <button type="button" class="time-slot-btn" data-time="03:00pm">3:00 PM</button>
+                      <button type="button" class="time-slot-btn" data-time="04:00pm">4:00 PM</button>
+                    </div>
+                  </div>
+                  
+                  <div class="time-slot-group">
+                    <h4>Evening</h4>
+                    <div class="time-slots">
+                      <button type="button" class="time-slot-btn" data-time="05:00pm">5:00 PM</button>
+                      <button type="button" class="time-slot-btn" data-time="06:00pm">6:00 PM</button>
+                      <button type="button" class="time-slot-btn" data-time="07:00pm">7:00 PM</button>
+                      <button type="button" class="time-slot-btn" data-time="08:00pm">8:00 PM</button>
+                      <button type="button" class="time-slot-btn" data-time="09:00pm">9:00 PM</button>
+                    </div>
+                  </div>
+                </div>
+                
+                <div class="selected-time-display">
+                  <span>Selected Time: </span>
+                  <strong id="selected-time-display">Not selected</strong>
+                </div>
+              </div>
+
+              <!-- Booking Success Message -->
+              <div class="booking-success" id="booking-success">
+                <h3>Your table has been reserved!</h3>
+                <p>We've sent a confirmation to your phone. See you soon!</p>
+              </div>
+
+              <button type="submit" class="btn btn-secondary">
+                <span class="text text-1 book_t">Book A Table</span>
+              </button>
+
+            </form>
+
+            <div class="form-right text-center" style="background-image: url(/images/form-pattern.png)">
+
+              <h2 class="headline-1 text-center">Reservation Info</h2>
+              <div class="separator"></div>
+              <p class="contact-label">Booking Request</p>
+
+              <a href="tel:+88123123456" class="body-1 contact-number hover-underline">+88-123-123456</a>
+              <div class="separator"></div>
+
+              <p class="contact-label">Location</p>
+
+              <p class="box4 add">
+                KBT Cafe, KBT College of Engineering, <br>
+                Nashik, 422001, Maharashtra.
+              </p>
+              <div class="separator"></div>
+              <div class="box5">
+                <p class="box4">Daily: 8.00 am to 10.00 pm</p>
+                <p class="box4">booking@kbtcafe.com</p>
+              </div>
+              
+            </div>
+            <img src="/images/shape-7.png" alt="shape" class="shape-7 img-cover">
+            <img src="/images/shape-7.png" alt="shape" class="shape-71 img-cover">
+          </div>
+          
+        </div>
+      </section>
+    <script src="/js/kbtcafe.js"></script>
+    <script>
+      document.addEventListener('DOMContentLoaded', function() {
+        // Time slot selection buttons
+        const timeSlotButtons = document.querySelectorAll('.time-slot-btn');
+        const timeSelect = document.getElementById('booking-time');
+        const timeDisplayElement = document.getElementById('selected-time-display');
+        
+        if (timeSlotButtons.length > 0 && timeSelect) {
+          timeSlotButtons.forEach(button => {
+            button.addEventListener('click', function() {
+              // Remove the selected class from all buttons
+              timeSlotButtons.forEach(btn => btn.classList.remove('selected'));
+              
+              // Add the selected class to this button
+              this.classList.add('selected');
+              
+              // Get the selected time value
+              const selectedTime = this.getAttribute('data-time');
+              
+              // Update the hidden select dropdown
+              timeSelect.value = selectedTime;
+              
+              // Update the display
+              if (timeDisplayElement) {
+                timeDisplayElement.textContent = this.textContent;
+                timeDisplayElement.style.color = 'var(--gold-crayola)';
+              }
+              
+              // Show a toast message
+              showToastMessage(`Time slot ${this.textContent} selected`);
+            });
+          });
+        }
+        
+        // Form validation for time slot
+        const bookingForm = document.getElementById('booking-form');
+        if (bookingForm) {
+          bookingForm.addEventListener('submit', function(e) {
+            if (timeSelect && timeSelect.value === '') {
+              e.preventDefault();
+              showToastMessage('Please select a time slot', true);
+              document.querySelector('.time-slot-selection').scrollIntoView({ behavior: 'smooth' });
+              return;
+            }
+            
+            // Validate phone number
+            const phoneInput = document.getElementById('customer-phone');
+            if (phoneInput && phoneInput.value.length !== 10) {
+              e.preventDefault();
+              showToastMessage('Please enter a valid 10-digit phone number', true);
+              phoneInput.focus();
+              return;
+            }
+            
+            // If validation passes, show success message
+            // In a real app, you would submit the form to the server
+            // For demo purposes, we'll just show the success message
+            e.preventDefault(); // Remove this in production
+            document.getElementById('booking-success').style.display = 'block';
+            document.querySelector('.btn-secondary').style.display = 'none';
+            
+            // Scroll to success message
+            document.getElementById('booking-success').scrollIntoView({ behavior: 'smooth' });
+          });
+        }
+        
+        // Helper function to show toast messages
+        function showToastMessage(message, isError = false) {
+          const feedbackMsg = document.createElement('div');
+          feedbackMsg.className = 'table-selection-feedback';
+          feedbackMsg.innerHTML = message;
+          feedbackMsg.style.position = 'fixed';
+          feedbackMsg.style.bottom = '20px';
+          feedbackMsg.style.right = '20px';
+          feedbackMsg.style.padding = '10px 20px';
+          feedbackMsg.style.backgroundColor = isError ? '#dc3545' : '#28a745';
+          feedbackMsg.style.color = 'white';
+          feedbackMsg.style.borderRadius = '5px';
+          feedbackMsg.style.zIndex = '1000';
+          feedbackMsg.style.opacity = '0';
+          feedbackMsg.style.transform = 'translateY(20px)';
+          feedbackMsg.style.transition = 'opacity 0.3s ease, transform 0.3s ease';
+          
+          document.body.appendChild(feedbackMsg);
+          
+          // Show the message with animation
+          setTimeout(() => {
+            feedbackMsg.style.opacity = '1';
+            feedbackMsg.style.transform = 'translateY(0)';
+          }, 10);
+          
+          // Remove after 3 seconds
+          setTimeout(() => {
+            feedbackMsg.style.opacity = '0';
+            feedbackMsg.style.transform = 'translateY(20px)';
+            setTimeout(() => {
+              document.body.removeChild(feedbackMsg);
+            }, 300);
+          }, 3000);
+        }
+      });
+    </script>
+</body>
+</html> 

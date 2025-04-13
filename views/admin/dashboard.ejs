@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard - KBT Cafe</title>
+    <link rel="stylesheet" href="/css/kbtcafe.css">
+    <style>
+        .admin-container {
+            max-width: 1200px;
+            margin: 120px auto 50px;
+            padding: 30px;
+        }
+        
+        .admin-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+        
+        .admin-tiles {
+            display: flex;
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+        
+        .admin-tile {
+            background-color: var(--eerie-black-2);
+            border-radius: 10px;
+            padding: 25px;
+            flex: 1;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+            text-align: center;
+            transition: transform 0.3s;
+        }
+        
+        .admin-tile:hover {
+            transform: translateY(-5px);
+        }
+        
+        .admin-tile h3 {
+            color: var(--gold-crayola);
+            margin-bottom: 10px;
+        }
+        
+        .admin-tile .count {
+            font-size: 3rem;
+            font-weight: bold;
+            color: white;
+        }
+        
+        .admin-tile a {
+            display: inline-block;
+            margin-top: 15px;
+            padding: 8px 15px;
+            background-color: var(--gold-crayola);
+            color: black;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: opacity 0.3s;
+        }
+        
+        .admin-tile a:hover {
+            opacity: 0.9;
+        }
+        
+        .admin-actions {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+        
+        .action-card {
+            background-color: var(--eerie-black-2);
+            border-radius: 10px;
+            padding: 25px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+            text-align: center;
+            transition: transform 0.3s;
+        }
+        
+        .action-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .action-card h3 {
+            color: var(--gold-crayola);
+            margin-bottom: 15px;
+        }
+        
+        .action-card p {
+            color: var(--quick-silver);
+            margin-bottom: 20px;
+        }
+        
+        .action-card a {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: var(--gold-crayola);
+            color: black;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: opacity 0.3s;
+        }
+        
+        .action-card a:hover {
+            opacity: 0.9;
+        }
+        
+        .alert {
+            padding: 10px;
+            margin-bottom: 20px;
+            border-radius: 5px;
+        }
+        
+        .alert-danger {
+            background-color: #ff6b6b;
+            color: white;
+        }
+        
+        .alert-success {
+            background-color: #51cf66;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <%- include("../includes/navbar") %>
+    
+    <div class="admin-container">
+        <div class="admin-header">
+            <h1 class="headline-1">Admin Dashboard</h1>
+            <a href="/kbt" style="color: var(--gold-crayola);">View Website</a>
+        </div>
+        
+        <% if(locals.error && error.length > 0) { %>
+            <div class="alert alert-danger">
+                <%= error %>
+            </div>
+        <% } %>
+        
+        <% if(locals.success && success.length > 0) { %>
+            <div class="alert alert-success">
+                <%= success %>
+            </div>
+        <% } %>
+        
+        <div class="admin-tiles">
+            <div class="admin-tile">
+                <h3>Menu Items</h3>
+                <div class="count"><%= menuCount %></div>
+                <a href="/kbt/admin/menu">Manage Menu</a>
+            </div>
+            
+            <div class="admin-tile">
+                <h3>Reservations</h3>
+                <div class="count"><%= reservCount %></div>
+                <a href="/kbt/admin/reservations">Manage Reservations</a>
+            </div>
+        </div>
+        
+        <div class="admin-actions">
+            <div class="action-card">
+                <h3>Add New Menu Item</h3>
+                <p>Create a new food or beverage item for your menu.</p>
+                <a href="/kbt/admin/menu/new">Add Item</a>
+            </div>
+            
+            <div class="action-card">
+                <h3>View All Menu Items</h3>
+                <p>View, edit or delete existing menu items.</p>
+                <a href="/kbt/admin/menu">View All</a>
+            </div>
+            
+            <div class="action-card">
+                <h3>Manage Reservations</h3>
+                <p>View and manage table reservations.</p>
+                <a href="/kbt/admin/reservations">View All</a>
+            </div>
+        </div>
+    </div>
+    
+    <script src="/js/kbtcafe.js"></script>
+</body>
+</html> 

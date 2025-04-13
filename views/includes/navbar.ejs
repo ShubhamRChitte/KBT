@@ -1,0 +1,249 @@
+<header class="responsive-header">
+    <nav class="navbar section-content">
+       
+        <a href="/kbt" class="nav-logo">
+            <img src="/images/mvp-removebg-preview.png" alt="mvp image" class="mvp-logo">
+            <h2 class="logo-text">KBT CAFE</h2>
+        </a>
+        <ul class="nav-menu">
+            <button id="menu-close-button" class="menu-close-button"></button>
+            <li class="nav-item">
+                <a href="/kbt" class="nav-link hover-underline">
+                    <span class="nav-icon">🏠</span>
+                    <span class="nav-text">Home</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="/kbt/about" class="nav-link hover-underline">
+                    <span class="nav-icon">📖</span>
+                    <span class="nav-text">About</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="/kbt/menu" class="nav-link hover-underline">
+                    <span class="nav-icon">🍽️</span>
+                    <span class="nav-text">Menu</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="/kbt/contact" class="nav-link hover-underline">
+                    <span class="nav-icon">📞</span>
+                    <span class="nav-text">Contact Us</span>
+                </a>
+            </li>
+            <% if(locals.isLoggedIn) { %>
+                <% if(locals.isAdmin) { %>
+                    <li class="nav-item">
+                        <a href="/kbt/admin" class="nav-link hover-underline admin-link">
+                            <span class="nav-icon">⚙️</span>
+                            <span class="nav-text">Admin</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="/kbt/reserv_all" class="nav-link hover-underline">
+                            <span class="nav-icon">📋</span>
+                            <span class="nav-text">Reservations</span>
+                        </a>
+                    </li>
+                <% } %>
+                <li class="nav-item">
+                    <a href="/kbt/reservation" class="nav-link hover-underline">
+                        <span class="nav-icon">📅</span>
+                        <span class="nav-text">Book Table</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="/kbt/auth/logout" class="nav-link hover-underline">
+                        <span class="nav-icon">🚪</span>
+                        <span class="nav-text">Logout</span>
+                    </a>
+                </li>
+            <% } else { %>
+                <li class="nav-item">
+                    <a href="/kbt/auth/login" class="nav-link hover-underline">
+                        <span class="nav-icon">🔑</span>
+                        <span class="nav-text">Login</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="/kbt/auth/register" class="nav-link hover-underline">
+                        <span class="nav-icon">📝</span>
+                        <span class="nav-text">Register</span>
+                    </a>
+                </li>
+            <% } %>
+            <div class="icon-cart">
+              <form action="/kbt/itm-qty" method="get">
+                <button class="cart-button">
+                  <svg aria-hidden="true" style="color:#f4ebd0;" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 18 20">
+                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 15a2 2 0 1 0 0 4 2 2 0 0 0 0-4Zm0 0h8m-8 0-1-4m9 4a2 2 0 1 0 0 4 2 2 0 0 0 0-4Zm-9-4h10l2-7H3m2 7L3 4m0 0-.792-3H1"/>
+                  </svg>
+                  <span class="noofitems"><p><%= typeof cartCount !== 'undefined' ? cartCount : 0 %></p></span>
+                </button>
+              </form>
+          </div>
+        </ul>
+       
+        <button id="menu-open-button" class="menu-open-button"></button>
+    </nav>
+</header>
+
+<% if(locals.error && error.length > 0) { %>
+    <div class="alert alert-danger">
+        <%= error %>
+    </div>
+<% } %>
+
+<% if(locals.success && success.length > 0) { %>
+    <div class="alert alert-success">
+        <%= success %>
+    </div>
+<% } %>
+
+<style>
+    /* Enhanced navbar styling */
+    .responsive-header {
+        backdrop-filter: blur(5px);
+    }
+    
+    .navbar {
+        padding: 0.8rem 2rem;
+    }
+    
+    .nav-logo {
+        display: flex;
+        align-items: center;
+    }
+    
+    .logo-text {
+        background: linear-gradient(to right, #e4c590, #fff);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        animation: textShine 2s linear infinite;
+    }
+    
+    @keyframes textShine {
+        0% { background-position: 0% center; }
+        100% { background-position: 200% center; }
+    }
+    
+    .nav-item {
+        position: relative;
+    }
+    
+    .nav-icon {
+        margin-right: 5px;
+        font-size: 1.2rem;
+        display: none;
+    }
+    
+    .nav-link {
+        display: flex;
+        align-items: center;
+    }
+    
+    .admin-link {
+        color: var(--gold-crayola) !important;
+        font-weight: bold;
+    }
+    
+    .cart-button {
+        background: none;
+        border: none;
+        position: relative;
+        cursor: pointer;
+        transition: transform 0.3s ease;
+    }
+    
+    .cart-button:hover {
+        transform: scale(1.1);
+    }
+    
+    .noofitems {
+        position: absolute;
+        top: -10px;
+        right: -10px;
+        background-color: red;
+        color: white;
+        border-radius: 50%;
+        width: 25px;
+        height: 25px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 0.8rem;
+        font-weight: bold;
+    }
+    
+    .noofitems p {
+        margin: 0;
+    }
+    
+    .alert {
+        position: fixed;
+        top: 80px;
+        left: 0;
+        right: 0;
+        width: 80%;
+        max-width: 500px;
+        margin: 0 auto;
+        padding: 15px;
+        border-radius: 8px;
+        text-align: center;
+        z-index: 1000;
+        animation: slideDown 0.3s ease forwards;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    }
+    
+    .alert-danger {
+        background-color: #ff6b6b;
+        color: white;
+    }
+    
+    .alert-success {
+        background-color: #51cf66;
+        color: white;
+    }
+    
+    @keyframes slideDown {
+        from { transform: translateY(-20px); opacity: 0; }
+        to { transform: translateY(0); opacity: 1; }
+    }
+    
+    .menu-open-button, .menu-close-button {
+        background: none;
+        border: none;
+        cursor: pointer;
+    }
+    
+    @media screen and (max-width: 768px) {
+        .nav-icon {
+            display: inline-block;
+            margin-right: 10px;
+        }
+        
+        .nav-link {
+            justify-content: flex-start;
+            width: 100%;
+        }
+        
+        .alert {
+            width: 90%;
+        }
+    }
+</style>
+
+<script>
+    // Flash messages auto-dismiss
+    setTimeout(function() {
+        let alerts = document.querySelectorAll('.alert');
+        alerts.forEach(function(alert) {
+            alert.style.opacity = '0';
+            alert.style.transform = 'translateY(-20px)';
+            alert.style.transition = 'all 0.3s ease';
+            setTimeout(() => {
+                alert.style.display = 'none';
+            }, 300);
+        });
+    }, 5000);
+</script>

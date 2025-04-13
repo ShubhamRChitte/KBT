@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+   
+    <link rel="stylesheet" href="/css/kbtcafe.css">
+   
+    
+    
+
+</head>
+<body>
+    <%- include("includes/navbar") %>
+    <!-- <section class="section menu" id="menu" style="background-image: url('/images/shape-2.png'); background-repeat: repeat;">
+      <div class="container">
+
+
+        <h2 class="headline-1 section-title text-center">Delicious Menu</h2>
+
+        <ul class="grid-list">
+
+          <div class="menuset">
+            <li>
+              <div class="menu-card">
+
+                <figure class="card-banner img-holder" style="--width: 100; --height: 100;">
+                  <img src="/images/tea-removebg-preview.png" width="100" height="100" loading="lazy" alt="Tea"
+                    class="img-cover">
+                    <h3 class="title-3 text-center">
+                      <a href="#" class="card-title">Tea</a>
+                    </h3>
+                </figure>
+
+                <div class="menu-sep">
+
+                  <div class="title-wrapper">
+                    
+
+                    <span class="span title-2">Rs 10.00</span>
+                  </div>
+
+                  <p class="card-text label-1">
+                    "Tea is the magic key to the vault where my brain is kept."
+                  </p>
+                  <form action="/kbt/1/itm" method="post" id="addcart">
+                    <button class="menu-order" type="submit">Add to Cart</button>
+                  </form>
+                  
+                </div>
+
+              </div>
+            </li>
+
+            <li>
+              <div class="menu-card ">
+
+                <figure class="card-banner img-holder" style="--width: 100; --height: 100;">
+                  <img src="/images/co.png" width="100" height="100" loading="lazy" alt="Lasagne"
+                    class="img-cover">
+                    <h3 class="title-3 text-center">
+                      <a href="#" class="card-title">Coffee</a>
+                    </h3>
+                </figure>
+
+                <div class="menu-sep">
+
+                  <div class="title-wrapper">
+                   
+
+                    <span class="span title-2">Rs 20.00</span>
+                  </div>
+
+                  <p class="card-text label-1">
+                    "Behind every successful person is a substantial amount of coffee."
+                  </p>
+                  
+                  <form action="/kbt/2/itm" method="post" id="addcart">
+                    <button type="submit" class="menu-order">Add to Cart</button>
+                  </form>
+                </div>
+                
+
+              </div>
+            </li>
+
+            
+          </div>
+          <div class="menuset">
+            <li>
+              <div class="menu-card ">
+
+                <figure class="card-banner img-holder" style="--width: 100; --height: 100;">
+                  <img src="/images/maggi-removebg-preview.png" width="100" height="100" loading="lazy" alt="Butternut Pumpkin"
+                    class="img-cover">
+                    <h3 class="title-3 text-center">
+                      <a href="#" class="card-title">Maggi</a>
+                    </h3>
+                </figure>
+
+                <div class="menu-sep">
+
+                  <div class="title-wrapper">
+                    
+
+                    <span class="span title-2">Rs 25.00</span>
+                  </div>
+
+                  <p class="card-text label-1">
+                    "Maggi – because good things come in two minutes Maggi."
+                  </p>
+                  <form action="/kbt/3/itm" method="post" id="addcart">
+                    <button class="menu-order" type="submit">Add to Cart</button>
+                  </form>
+                </div>
+
+              </div>
+            </li>
+
+            <li>
+              <div class="menu-card hover:card">
+
+                <figure class="card-banner img-holder" style="--width: 100; --height: 100;">
+                  <img src="/images/french-fry-removebg-preview.png" width="100" height="100" loading="lazy" alt="Olivas Rellenas"
+                    class="img-cover">
+                    <h3 class="title-3 text-center">
+                      <a href="#" class="card-title">Fries</a>
+                    </h3>
+                </figure>
+
+                <div class="menu-sep">
+
+                  <div class="title-wrapper">
+                   
+
+                    <span class="span title-2">Rs 50.00</span>
+                  </div>
+
+                  <p class="card-text label-1">
+                    "Fries are crispy bites of happiness that make every moment better."
+                  </p>
+                  <form action="/kbt/4/itm" method="post" id="addcart">
+                    <button class="menu-order" type="submit">Add to Cart</button>
+                  </form>
+                </div>
+
+              </div>
+            </li>
+          </div>
+        
+          
+          <div class="menuset"> 
+          
+           
+            <li>
+              <div class="menu-card hover:card">
+
+                <figure class="card-banner img-holder" style="--width: 100; --height: 100;">
+                  <img src="/images/vp.png" width="100" height="100" loading="lazy" alt="Olivas Rellenas"
+                    class="img-cover">
+                    <h3 class="title-3 text-center">
+                      <a href="#" class="card-title">Vada Pav</a>
+                    </h3>
+                </figure>
+
+                <div class="menu-sep">
+
+                  <div class="title-wrapper">
+                   
+
+                    <span class="span title-2">Rs 20.00</span>
+                  </div>
+
+                  <p class="card-text label-1">
+                    "Spicy, crispy, and oh-so-satisfying — that's Vada Pav for you!"
+                  </p>
+                  <form action="/kbt/5/itm" method="post" id="addcart">
+                    <button class="menu-order" type="submit">Add to Cart</button>
+                  </form>
+
+                </div>
+
+              </div>
+            </li>
+
+            <li>
+              <div class="menu-card hover:card">
+
+                <figure class="card-banner img-holder" style="--width: 100; --height: 100;">
+                  <img src="/images/bun.png" width="100" height="100" loading="lazy" alt="Opu Fish"
+                    class="img-cover">
+                    <h3 class="title-3 text-center">
+                      <a href="#" class="card-title">Bun Maska</a>
+                    </h3>
+                </figure>
+
+                <div class="menu-sep">
+
+                  <div class="title-wrapper">
+                    
+
+                    <span class="span title-2">Rs 49.00</span>
+                  </div>
+
+                  <p class="card-text label-1">
+                    "Bun Maska — spreading happiness, one bite at a time."
+                  </p>
+                  <form action="/kbt/6/itm" method="post" id="addcart">
+                    <button class="menu-order" type="submit">Add to Cart</button>
+                  </form>
+                </div>
+
+              </div>
+            </li>
+          </div>
+        </ul>
+
+        <a href="/kbt/all_menu" class="btn btn-primary text-center">
+          <span class="text text-1">View All Menu</span>
+        </a>
+      </div>
+    </section>  -->
+
+
+    <section class="body">
+      <h2 class="headline-2 section-title text-center" style="margin-top: 1.2rem; color: goldenrod;">Delicious Menu</h2>
+
+      <section class="menu-1">
+        <div class="menuset-1">
+          <div class="card">
+            <img src="https://media.istockphoto.com/id/864607392/photo/image-of-a-glass-of-tea-in-street-market.jpg?s=1024x1024&w=is&k=20&c=7-gsmCWyBemLsQKKehJGtdMowlIkqK3lhQZCH7umuRc=", alt="listing-image" class="card-img-top">
+          
+            <div class="card-img-overlay"></div>
+            <div class="card-body">
+                <div class="card-text">
+                  <div class="ti-pr"> 
+                    <p class="title-2"> Tea  </p>
+                    <p class="title-2">&#8377; 10 </p>
+                  </div>
+                    <p class="description">"Tea is the magic key to the vault where my brain is kept."</p>
+                </div>
+                <form action="/kbt/1/itm" method="post" id="addcart">
+                  <button class="menu-order add-cart-btn" type="button" data-id="1">Add to Cart</button>
+                </form>
+            </div>
+          </div>
+          <div class="card">
+            <img src="https://media.istockphoto.com/id/1253607563/photo/fresh-organic-aromatic-black-tea-in-the-glass-cup-on-light-background.webp?a=1&b=1&s=612x612&w=0&k=20&c=g45qG1Y3Lq0Lv2cthxcxZVxt74G3aTOG7x0ENgPyPzs=" alt="listing-image" class="card-img-top">
+          
+            <div class="card-img-overlay"></div>
+            <div class="card-body">
+                <div class="card-text">
+                  <div class="ti-pr"> 
+                    <p class="title-2"> Black Tea</p>
+                    <p class="title-2">&#8377; 15 </p>
+                  </div>
+                    <p class="description">“A cup of black tea makes everything better — strong, simple, soulful."</p>
+                </div>
+                <form action="/kbt/2/itm" method="post" id="addcart">
+                   <button type="button" class="menu-order add-cart-btn" data-id="2">Add to Cart</button>
+                </form>
+            </div>
+          </div>
+          <div class="card">
+            <img src="https://media.istockphoto.com/id/638239408/photo/aceh-noodles.jpg?s=1024x1024&w=is&k=20&c=w872ig_Zcv854fsuGzXSfm-Ljj3lqUQZWzQWyLHlMq0=" alt="listing-image" class="card-img-top">
+          
+            <div class="card-img-overlay"></div>
+            <div class="card-body">
+                <div class="card-text">
+                  <div class="ti-pr"> 
+                    <p class="title-2"> Classic Maggi </p>
+                    <p class="title-2">&#8377; 40 </p>
+                  </div>
+                    <p class="description">"Maggi – because good things come in two minutes Maggi."</p>
+                </div>
+                <form action="/kbt/3/itm" method="post" id="addcart">
+                  <button type="button" class="menu-order add-cart-btn" data-id="3">Add to Cart</button>
+               </form>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section class="menu-1">
+        <div class="menuset-1">
+          <div class="card">
+            <img src="https://media.istockphoto.com/id/1433411975/photo/vada-pav-or-wada-pao-indian-potato-sandwich.jpg?s=1024x1024&w=is&k=20&c=x69bDTGnZ5qp4k0c4Vx2zXL9kmG5IK7WTz-T0XY-F9U=" alt="listing-image" class="card-img-top">
+          
+            <div class="card-img-overlay"></div>
+            <div class="card-body">
+                <div class="card-text">
+                  <div class="ti-pr"> 
+                    <p class="title-2"> Vada Pav  </p>
+                    <p class="title-2">&#8377; 20 </p>
+                  </div>
+                    <p class="description"> "Spicy, crispy, and oh-so-satisfying — that's Vada Pav for you!"
+
+                    </p>
+                </div>
+                <form action="/kbt/5/itm" method="post" id="addcart">
+                  <button type="button" class="menu-order add-cart-btn" data-id="5">Add to Cart</button>
+               </form>
+            </div>
+          </div>
+          <div class="card">
+            <img src="https://images.unsplash.com/photo-1541592106381-b31e9677c0e5?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTl8fHNhbHRlZCUyMGZyaWVzfGVufDB8fDB8fHww" alt="listing-image" class="card-img-top">
+          
+            <div class="card-img-overlay"></div>
+            <div class="card-body">
+                <div class="card-text">
+                  <div class="ti-pr"> 
+                    <p class="title-2">Salted Fries
+                    <p class="title-2">&#8377; 60 </p>
+                  </div>
+                    <p class="description">"Crispy, golden fries lightly seasoned with sea salt – a timeless favorite."</p>
+                </div>
+                <form action="/kbt/4/itm" method="post" id="addcart">
+                  <button type="button" class="menu-order add-cart-btn" data-id="4">Add to Cart</button>
+             
+               </form>
+            </div>
+          </div>
+          <div class="card">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRWN389Pso_9IaCSYWM-R3pdnwJMwrnoCR-vQ&s" alt="listing-image" class="card-img-top">
+          
+            <div class="card-img-overlay"></div>
+            <div class="card-body">
+                <div class="card-text">
+                  <div class="ti-pr"> 
+                    <p class="title-2"> Bun Maska </p>
+                    <p class="title-2">&#8377; 40 </p>
+                  </div>
+                    <p class="description">Toasted bun with a rich layer of butter – a classic tea-time favorite.</p>
+                </div>
+                <form action="/kbt/6/itm" method="post" id="addcart">
+                  <button type="button" class="menu-order add-cart-btn" data-id="6">Add to Cart</button>
+             
+                </form>
+            </div>
+          </div>
+        </div>
+      </section>
+      <a href="/kbt/all_menu" class="btn ">
+        <span class="text text-1 view-menu">View All Menu</span>
+      </a>
+    </section>
+
+
+    <script>
+      document.addEventListener('DOMContentLoaded', function() {
+        // Add event listeners to all cart buttons
+        document.querySelectorAll('.add-cart-btn, .custom-card-btn').forEach(button => {
+          button.addEventListener('click', async function(e) {
+            e.preventDefault();
+            const itemId = this.getAttribute('data-id');
+            
+            try {
+              const response = await fetch(`/kbt/${itemId}/itm`, {
+                method: 'POST',
+                headers: {
+                  'Content-Type': 'application/json'
+                }
+              });
+              
+              if (response.ok) {
+                const cartCount = await response.text();
+                // Update cart count in navbar
+                document.querySelector('.noofitems p').innerText = cartCount;
+                
+                // Visual feedback
+                this.innerHTML = 'Added <i class="fas fa-check"></i>';
+                this.style.backgroundColor = '#28a745';
+                
+                // Reset after 1.5 seconds
+                setTimeout(() => {
+                  if (this.classList.contains('custom-card-btn')) {
+                    this.innerHTML = 'Add to Cart';
+                    this.style.backgroundColor = '#212529'; // Bootstrap dark color
+                  } else {
+                    this.innerHTML = 'Add to Cart';
+                    this.style.backgroundColor = 'red';
+                  }
+                }, 1500);
+              }
+            } catch (error) {
+              console.error('Error adding item to cart:', error);
+            }
+          });
+        });
+      });
+    </script>
+    <script src="/js/kbtcafe.js"></script>
+</body>
+</html>

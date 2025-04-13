@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Item Quantity</title>
+    
+    <link rel="stylesheet" href="/css/item-qty.css">
+
+</head>
+<body>
+    <%- include("includes/navbar") %>
+    <main>
+        <h1 class="headline" style="margin-top: 4rem;">KBT CAFE</h1>
+        <br>
+    <hr><p  style="line-height: 0.8;"><br></p><hr>
+
+    <form action="/kbt/bill" method="POST">
+        <%for(let item of result){%>
+    
+            <div class="display" id="item-<%= item._id %>">
+                <img src="<%=item.image.url%>" alt=<%=item.title%> class="itm-image">
+                <div class="itm-name"><%=item.title%></div>
+                <div class="itm-price">Rs <%=item.price%></div>
+                
+                <div class="qty-controls">
+                    <button type="button" onclick="decrement('<%= item._id %>')" class="select-btn" style="background-color: #d8a7b1;">-</button>
+                    <input type="text" id="qty-<%= item._id %>" name="items[<%= item._id %>]" value="1" readonly class="input" style="color: black; background-color: #fae8e0">
+                    <button type="button" onclick="increment('<%= item._id %>')" class="select-btn" style="background-color: #ef7c8e;">+</button>
+                </div>
+                &nbsp;&nbsp;
+                <a href="http://localhost:3000/kbt/<%= item._id %>/remove" class="remove">
+                    remove
+                </a>
+                    
+                
+            </div>
+            <hr>
+        <%}%>
+        <p style="line-height: 0.8;"><br></p><hr>
+    
+       
+            <div class="gT-data">
+                <button class="gb" type="submit">Generate Bill</button>
+            </div>
+    </form>
+    </main>
+   
+
+
+    <script>
+        function increment(id) {
+          const qtyInput = document.getElementById('qty-' + id);
+          qtyInput.value = parseInt(qtyInput.value) + 1;
+        }
+      
+        function decrement(id) {
+          const qtyInput = document.getElementById('qty-' + id);
+          const current = parseInt(qtyInput.value);
+          if (current > 1) {
+            qtyInput.value = current - 1;
+          }
+        }
+
+        function removeItem(id) {
+            const itemDiv = document.getElementById('item-' + id);
+            if (itemDiv) {
+                itemDiv.remove(); // This removes the entire item block from the form
+            }
+        }
+      </script>
+    
+</body>
+</html>

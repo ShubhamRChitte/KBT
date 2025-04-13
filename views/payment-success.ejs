@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment Successful - KBT Cafe</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    
+    <!-- Google fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Forum&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet"> 
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Montserrat', sans-serif;
+        }
+        
+        body {
+            background-color: #1a1a1a;
+            color: #f4ebd0;
+            background-image: url('/images/payment-bg.jpg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            background-blend-mode: overlay;
+        }
+        
+        .success-container {
+            max-width: 800px;
+            margin: 3rem auto;
+            padding: 3rem;
+            background-color: rgba(30, 30, 30, 0.9);
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            text-align: center;
+            backdrop-filter: blur(5px);
+            border: 1px solid rgba(218, 165, 32, 0.2);
+            transform: translateY(20px);
+            opacity: 0;
+            animation: fadeIn 0.8s ease forwards;
+        }
+        
+        @keyframes fadeIn {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .success-icon {
+            font-size: 5rem;
+            color: #4CAF50;
+            margin-bottom: 1.5rem;
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+                opacity: 1;
+            }
+            50% {
+                transform: scale(1.1);
+                opacity: 0.8;
+            }
+            100% {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+        
+        .success-title {
+            font-size: 2.8rem;
+            color: #f4ebd0;
+            margin-bottom: 1.2rem;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+            background: linear-gradient(90deg, #d4af37, #f4cd6d, #d4af37);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .success-message {
+            font-size: 1.3rem;
+            color: #d4c9a8;
+            margin-bottom: 2.5rem;
+            line-height: 1.7;
+        }
+        
+        .order-details {
+            background-color: rgba(40, 40, 40, 0.7);
+            padding: 2rem;
+            border-radius: 12px;
+            margin-bottom: 2.5rem;
+            text-align: left;
+            border-left: 3px solid goldenrod;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .order-details:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(218, 165, 32, 0.2);
+        }
+        
+        .order-details h3 {
+            font-size: 1.5rem;
+            color: goldenrod;
+            margin-bottom: 1.5rem;
+            text-align: center;
+            border-bottom: 1px solid rgba(218, 165, 32, 0.2);
+            padding-bottom: 0.8rem;
+        }
+        
+        .order-details p {
+            margin-bottom: 0.8rem;
+            color: #d4c9a8;
+            font-size: 1.1rem;
+            display: flex;
+            justify-content: space-between;
+            padding: 0.5rem 0;
+            border-bottom: 1px dashed rgba(218, 165, 32, 0.1);
+        }
+        
+        .order-details p:last-child {
+            border-bottom: none;
+        }
+        
+        .order-details .highlight {
+            font-weight: 600;
+            color: #f4ebd0;
+            text-shadow: 0 0 5px rgba(218, 165, 32, 0.3);
+        }
+        
+        .btn {
+            display: inline-block;
+            background: linear-gradient(to right, #c19a49, goldenrod, #c19a49);
+            color: #1a1a1a;
+            border: none;
+            padding: 1.2rem 2.5rem;
+            font-size: 1.1rem;
+            border-radius: 50px;
+            cursor: pointer;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            margin: 0 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
+        
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: 0.5s;
+            z-index: -1;
+        }
+        
+        .btn:hover {
+            background: linear-gradient(to right, #d4af37, #f4cd6d, #d4af37);
+            box-shadow: 0 5px 15px rgba(218, 165, 32, 0.4);
+            transform: translateY(-3px);
+        }
+        
+        .btn:hover::before {
+            left: 100%;
+        }
+        
+        .btn-outline {
+            background: transparent;
+            color: goldenrod;
+            border: 2px solid goldenrod;
+        }
+        
+        .btn-outline:hover {
+            background: goldenrod;
+            color: #1a1a1a;
+            box-shadow: 0 5px 15px rgba(218, 165, 32, 0.4);
+        }
+        
+        .buttons {
+            margin-top: 2.5rem;
+            animation: slideUp 1s 0.5s ease forwards;
+            opacity: 0;
+            transform: translateY(20px);
+        }
+        
+        @keyframes slideUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .success-container {
+                padding: 2rem 1.5rem;
+                margin: 2rem 1rem;
+            }
+            
+            .buttons .btn {
+                display: block;
+                margin: 1rem auto;
+                width: 80%;
+            }
+            
+            .success-title {
+                font-size: 2.2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <%- include("includes/navbar") %>
+    
+    <div class="success-container">
+        <div class="success-icon">
+            <i class="fas fa-check-circle"></i>
+        </div>
+        
+        <h1 class="success-title">Payment Successful!</h1>
+        
+        <p class="success-message">
+            Thank you for your payment. Your order has been successfully processed.<br>
+            Your food will be prepared and served shortly.
+        </p>
+        
+        <div class="order-details">
+            <h3>Order Summary</h3>
+            <p>Order Number: <span class="highlight">#<%= orderNumber %></span></p>
+            <p>Date: <span class="highlight"><%= date %></span></p>
+            <p>Amount Paid: <span class="highlight">₹<%= grandTotal %>.00</span></p>
+            <p>Payment Method: <span class="highlight"><%= paymentMethod %></span></p>
+            <% if(transactionId) { %>
+                <p>Transaction ID: <span class="highlight"><%= transactionId %></span></p>
+            <% } %>
+        </div>
+        
+        <div class="buttons">
+            <a href="/kbt" class="btn">Return to Home</a>
+            <a href="/kbt/menu" class="btn btn-outline">Order More</a>
+        </div>
+    </div>
+    
+    <%- include("includes/footer") %>
+</body>
+</html> 

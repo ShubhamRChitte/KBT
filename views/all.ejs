@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KBT CAFE - Menu</title>
+    <!-- font awesome linking -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    
+    <!-- google fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Forum&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet"> 
+    
+    <link rel="stylesheet" href="/css/menu_all.css">
+</head>
+<body>
+    <%- include("includes/navbar") %>
+
+    <main>
+        <h2>Delicious Menu</h2>
+        <h2 class="headline-2 section-title text-center" style="margin-top: 2.2rem; color: goldenrod;">Delicious Menu</h2>
+        
+        <div class="menu-container">
+            <% for(let item of items){ %>
+                <a href="http://localhost:3000/kbt/<%= item._id %>/show">
+                <div class="card">
+                    <div>
+                        <img src="<%= item.image.url %>" alt="<%= item.title %>" class="card-img-top">
+                    </div>
+                    <div class="card-body">
+                        <div class="card-text">
+                           <div class="ti-pr"> 
+                             <p class="title-2" style="font-size: 1.5rem;font-family: 'Poppins' , 'sans-serif';"><%= item.title %> </p>
+                             <p class="title-2"  style="font-size: 1.5rem;font-family: 'Poppins' , 'sans-serif';">&#8377; <%= item.price.toLocaleString("en-IN") %> </p>
+                           </div>
+                            <p class="description"><%= item.description %></p>
+                        </div>
+                        <form action="/kbt/<%= item._id %>/itm" method="post">
+                            <!-- <button >Add To Cart</button> -->
+                            <button type="submit" class="btn custom-card-btn btn-dark" data-id="<%= item._id %>">Add to Cart</button>
+                        </form>
+                     </div>
+                </div>
+                </a>
+            <% } %>
+        </div>
+    </main>
+    <%- include("includes/footer") %>
+
+
+
+
+     <script>
+        document.querySelectorAll('.custom-card-btn').forEach(button => {
+          button.addEventListener('click', async (e) => {
+            e.preventDefault(); // Prevent form reload if inside a form
+      
+            const itemId = button.dataset.id;
+      
+            const res = await fetch(`/kbt/${itemId}/itm`, {
+              method: 'POST'
+            });
+      
+            const cartCount = await res.text();
+            document.querySelector('.noofitems p').innerText = cartCount;
+          });
+        });
+      </script>
+      
+    <script src="/js/kbtcafe.js"></script>
+</body>
+</html>

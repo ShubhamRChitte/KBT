@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- font awesome linking -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    
+    <!-- google fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Forum&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet"> 
+    <link rel="stylesheet" href="/css/kbtcafe.css">
+    <title>Table Reservation</title>
+</head>
+<body>
+    <%- include("includes/navbar") %>
+    <div>hello</div>
+    <h1 style="margin-top: 4rem; color: goldenrod; text-align: center;" class="section-title">Table Reservation</h1>
+    <br>
+    <div style="padding:0rem 2rem;">
+                <% for(let res of reserv){ %>
+                <div>
+                    <div class="reserv-all">
+                        <p><%=res.name%></p>
+                        <form action="/kbt/<%=res._id%>/reserv_edit">
+                            <button class="reserv-btn-1">Edit</button>
+                        </form>
+                    
+                        <form action="/kbt/<%= res._id%>/reserv?_method=DELETE" method="post">
+                            <button class="reserv-btn-2">Delete</button>
+                        </form>
+                        <form action="/kbt/show-reserv/<%= res._id %>" method="get">
+                            <button class="reserv-btn-3">View</button>
+                        </form>
+                        
+                    </div>
+                </div>
+                
+                
+
+
+            <% } %>
+    </div>   
+  
+   
+
+</body>
+</html>
